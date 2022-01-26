@@ -1,0 +1,27 @@
+{
+  "name": "netflixclone",
+  "version": "1.0.0",
+  "description": "MERN Netflix Clone built using MongoDB, Express, React, and Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmchiang1/NetflixClone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmchiang1/NetflixClone/issues"
+  },
+  "homepage": "https://github.com/jmchiang1/NetflixClone#readme",
+  "dependencies": {
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.8",
+    "nodemon": "^2.0.15"
+  }
+}
