@@ -1,2 +1,3 @@
 # NetflixClone
-MERN Netflix Clone 
+
+MERN Netflix Clone built using MongoDB, Express, React, and Node.js
