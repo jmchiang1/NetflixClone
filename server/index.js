@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
-// const userRoute = require("./routes/users");
+const userRoute = require("./routes/users");
 // const movieRoute = require("./routes/movies");
 // const listRoute = require("./routes/lists");
 
@@ -22,7 +22,7 @@ mongoose
 
 app.use(express.json());
 app.use("/auth", authRoute);
-// app.use("/user", userRoute);
+app.use("/users", userRoute);
 // app.use("/movie", movieRoute);
 // app.use("/list", listRoute);
 
