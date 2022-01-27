@@ -1,10 +1,17 @@
 import React from "react";
-import "./Navbar.css";
+import './Styles/Navbar.scss'
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 function Navbar() {
+
+    // const [scrolled, setScrolled] = useState(false);
+    // window.onscroll = () => {
+    //     setScrolled(window.pageYOffset === 0 ? false : true);
+    //     return () => window.onscroll = null;
+    // }
+
   return (
     <div className="navbar">
       <div className="container">
@@ -28,7 +35,13 @@ function Navbar() {
             src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
             alt=""
           />
-          <ArrowDropDownIcon/>
+          <div className="profile">
+          <ArrowDropDownIcon className="icon"/>
+          <div className="options">
+              <span>Settings</span>
+              <span>Logout</span>
+          </div>
+          </div>
         </div>
       </div>
     </div>
