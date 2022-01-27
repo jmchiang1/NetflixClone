@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const movieRoute = require("./routes/movies");
-// const listRoute = require("./routes/lists");
+const listRoute = require("./routes/lists");
 
 dotenv.config();
 
@@ -23,8 +23,8 @@ mongoose
 app.use(express.json());
 app.use("/auth", authRoute);
 app.use("/users", userRoute);
-app.use("/movie", movieRoute);
-// app.use("/list", listRoute);
+app.use("/movies", movieRoute);
+app.use("/lists", listRoute);
 
 app.listen(8080, () => {
   console.log("Server running on PORT 8080");
