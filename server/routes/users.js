@@ -8,7 +8,8 @@ router.get("/", verifyToken, async (req, res) => {
   const query = req.query.new;
   if (req.user.isAdmin){
     try {
-      const users = query ? await User.find().limit(10) : await User.find() //admin can see all users 
+      //if there is a query request, view the latest 10 users only 
+      const users = query ? await User.find().sort({_id: -1}).limit(10) : await User.find() //admin can see all users 
       res.status(200).json(users)
     } catch (err) {
       res.status(500).json(err)
@@ -67,6 +68,31 @@ router.delete("/:id", verifyToken, async (req, res) => {
     }
   } else {
     res.status(403).json("You can delete only your account!");
+  }
+});
+
+//GET USER STATS - not working 
+router.get("/stats", async (req, res) => {
+  // const today = new Date();
+  // const lastYear = today.setFullYear(today.setFullYear() - 1);
+
+  try {
+    const data = await User.aggregate([
+      {
+        $project: {
+          month: { $year: "$createdAt" },
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          total: { $sum: 1 }, //returns total users per month
+        },
+      },
+    ]);
+    res.status(200).json(data)
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
