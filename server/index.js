@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
-// const movieRoute = require("./routes/movies");
+const movieRoute = require("./routes/movies");
 // const listRoute = require("./routes/lists");
 
 dotenv.config();
@@ -23,7 +23,7 @@ mongoose
 app.use(express.json());
 app.use("/auth", authRoute);
 app.use("/users", userRoute);
-// app.use("/movie", movieRoute);
+app.use("/movie", movieRoute);
 // app.use("/list", listRoute);
 
 app.listen(8080, () => {

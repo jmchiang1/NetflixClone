@@ -20,7 +20,7 @@ router.get("/", verifyToken, async (req, res) => {
 });
 
 //GET SINGLE USER - works with postman
-router.get("/:id", async (req, res) => {
+router.get("/find/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     const { password, ...info } = user._doc;
@@ -71,7 +71,7 @@ router.delete("/:id", verifyToken, async (req, res) => {
   }
 });
 
-//GET USER STATS - not working 
+//GET USER STATS - works with postman
 router.get("/stats", async (req, res) => {
   // const today = new Date();
   // const lastYear = today.setFullYear(today.setFullYear() - 1);
