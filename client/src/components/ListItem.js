@@ -4,22 +4,33 @@ import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFil
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import ReactPlayer from 'react-player'
+
 
 function ListItem({index, item}) {
   const [isHovered, setIsHovered] = useState(false);
-  const [movie, setMovie] = useState({});
+  // const [movie, setMovie] = useState({});
 
   return (
     <div
       className="listItem"
-      style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
+      style={{ left: isHovered && index * 225 - 50 + index * 2.5 }} //center the hovered image
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <img
+      onMouseLeave={() => setIsHovered(false)}>
+      {isHovered ? (
+        <ReactPlayer 
+        url="https://www.youtube.com/watch?v=JfVOs4VSpmA&ab_channel=SonyPicturesEntertainment"
+        playing={true}
+        width="100%"
+        height="140px"
+        muted={true}
+        />) 
+        :
+        <img
         src="https://wallpaperboat.com/wp-content/uploads/2021/12/19/79926/spider-man-no-way-home-12.jpg"
         alt=""
       />
+      }
       <div className="itemInfo">
         <div className="icons">
           <PlayCircleFilledWhiteOutlinedIcon />
