@@ -14,9 +14,9 @@ export default function List() {
 
   const handleClick = (direction) => {
     setIsMoved(true);
-    let distance = listRef.current.getBoundingClientRect().x - 50;
     // let distance = listRef.current?.getBoundingClientRect().x ?? 0 - 50 ;
-    if (direction === "left" && slideNumber > 0) {
+    let distance = listRef.current.getBoundingClientRect().x - 50;
+    if (direction === "left" && slideNumber > 0) {  //i
       setSlideNumber(slideNumber - 1);
       listRef.current.style.transform = `translateX(${230 + distance}px)`;
     }
@@ -35,7 +35,9 @@ export default function List() {
           onClick={() => handleClick("left")}
           style={{ display: !isMoved && "none" }}
         />
-        <div className="container">
+
+        {/* continer needs to have reference to distance */}
+        <div className="container" ref={listRef}>
             <ListItem index={0} />
             <ListItem index={1}/>
             <ListItem index={2}/>
@@ -44,6 +46,9 @@ export default function List() {
             <ListItem index={5}/>
             <ListItem index={6}/>
             <ListItem index={7}/>
+            <ListItem index={8}/>
+            <ListItem index={9}/>
+            <ListItem index={10}/>
         </div>
         <ArrowForwardIosOutlinedIcon
           className="sliderArrow right"
