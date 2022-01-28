@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Styles/ListItem.scss";
-import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
+import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
@@ -33,10 +33,10 @@ function ListItem({index, item}) {
       }
       <div className="itemInfo">
         <div className="icons">
-          <PlayCircleFilledWhiteOutlinedIcon />
-          <AddOutlinedIcon />
-          <ThumbUpIcon />
-          <ThumbDownIcon />
+          <PlayArrowOutlinedIcon className="icon" />
+          <AddOutlinedIcon className="icon" />
+          <ThumbUpIcon className="icon" />
+          <ThumbDownIcon className="icon" />
         </div>
         <div className="itemInfoTop">
           <span>1 Hour 14 minutes</span>
