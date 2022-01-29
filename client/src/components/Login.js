@@ -1,22 +1,9 @@
-import React, { useState, useRef } from "react";
-import "./Styles/Register.scss";
+import "./Styles/Login.scss";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const emailRef = useRef();
-  const passwordRef = useRef();
-
-  const handleStart = () => {
-    setEmail(emailRef.current.value);
-  };
-  const handleFinish = () => {
-    setPassword(passwordRef.current.value);
-  };
 
   return (
-    <div className="register">
+    <div className="login">
       <div className="top">
         <div className="wrapper">
           <img
@@ -24,31 +11,16 @@ function Login() {
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
             alt=""
           />
-          <button className="loginButton">Sign In</button>
         </div>
       </div>
       <div className="container">
-        <h1>Unlimited movies, TV shows, and more</h1>
-        <h1>Watch anywhere, Cancel anytime</h1>
-        <p>
-          Ready to watch? Enter your email to create or restart your membership.
-        </p>
-
-        {!email ? (
-          <div className="input">
-            <input type="email" placeholder="Email Address" ref={emailRef} />
-            <button className="registerButton" onClick={handleStart}>
-              Get Started
-            </button>
-          </div>
-        ) : (
-          <form className="input">
-            <input type="password" placeholder="Password" ref={passwordRef} />
-            <button className="registerButton" onClick={handleFinish}>
-              Start
-            </button>
+          <form>
+              <h1 style={{fontSize: "xxx-large", margin: 'inherit'}}>Sign In </h1>
+              <input type="email" placeholder="Email or phone number" />
+              <input type="password" placeholder="Password" />
+              <button className="loginButton">Sign In</button>
+              <span>New to Netflex? <b>Sign up now.</b> </span>
           </form>
-        )}
       </div>
     </div>
   );
