@@ -24,8 +24,8 @@ function ListItem({index, item}) {
         width="100%"
         height="140px"
         muted={true}
-        />) 
-        :
+        />
+        ) :
         <img
         src="https://wallpaperboat.com/wp-content/uploads/2021/12/19/79926/spider-man-no-way-home-12.jpg"
         alt=""
