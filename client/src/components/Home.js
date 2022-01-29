@@ -3,12 +3,12 @@ import Navbar from './Navbar'
 import Feature from './Featured'
 import List from './List'
 
-function Home() {
+function Home({type}) {
     return (
         <div className="home">
             <Navbar/>
-            <Feature type="movie"/>
-            <List/>
+            <Feature type={type} />
+            <List/> 
             <List/>
             <List/>
             

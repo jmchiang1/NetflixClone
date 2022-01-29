@@ -1,7 +1,6 @@
 .navbar {
   width: 100%;
   color: white;
-  font-size: 14px;
   position: fixed;
   top: 0;
   z-index: 999;
@@ -12,20 +11,25 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    height: 4rem;
 
     .left {
       display: flex;
       align-items: center;
 
       img {
-        height: 25px;
+        height: 2rem;
         margin-right: 40px;
       }
 
       span {
-        margin-right: 20px;
+        margin-right: 3rem;
         cursor: pointer;
+        font-weight: bold;
+      }
+      .link {
+        text-decoration: none;
+        color: white;
       }
     }
 
