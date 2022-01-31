@@ -2,10 +2,10 @@ import "./Styles/Home.css";
 import FeaturedInfo from "./FeaturedInfo";
 import Chart from "./Chart";
 import { userData } from '../DummyData'
-// // import WidgetSm from "../../components/widgetSm/WidgetSm";
-// // import WidgetLg from "../../components/widgetLg/WidgetLg";
-// import { useEffect, useMemo, useState } from "react";
-// import axios from "axios";
+import WidgetSm from './WidgetSm';
+import WidgetLg from './WidgetLg';
+import { useEffect, useMemo, useState } from "react";
+import axios from "axios";
 
 export default function Home() {
 
@@ -58,10 +58,10 @@ export default function Home() {
     <div className="home">
       <FeaturedInfo />
       <Chart data={userData} title="User Analytics" grid dataKey="Active User" />
-      {/* <div className="homeWidgets">
+      <div className="homeWidgets">
         <WidgetSm />
         <WidgetLg />
-      </div> */}
+      </div>
     </div>
   );
 }
