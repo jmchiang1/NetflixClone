@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Styles/Featured.scss";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import axios from 'axios'
 
 function Featured({ type }) {
+  const [content, setContent] = useState({})
+
+  useEffect(() => {
+    const getRandomContent = async () => {
+      try {
+        const res = await axios.get(`/movies/find/random?type=${type}`, 
+        {
+          headers: {
+            token:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjIxMjYwNmIxMjU1NjI3MjgyMmY1NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MzU5MzkwOSwiZXhwIjoxNjQzNjgwMzA5fQ.pzWhzu0MS_zoP-3ly0CozsXO0RA7Wgb_ytDaoTpWcSY",
+          },
+        })
+        setContent(res.data[0])
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getRandomContent()
+  }, [type])
+
   return (
     <div className="featured">
       {type && (
@@ -31,23 +52,10 @@ function Featured({ type }) {
           </select>
         </div>
       )}
-      <img
-        src="https://wallpaperboat.com/wp-content/uploads/2021/12/19/79926/spider-man-no-way-home-12.jpg"
-        alt=""
-      />
+      <img src={content.img} alt="" />
       <div className="info">
-        <img
-          src="https://preview.redd.it/z27ujlkl0qp61.png?auto=webp&s=0ca3f97833cd2280f5fac0c17595d11ca7bf9631"
-          alt=""
-        />
-        <span className="description">
-          With Spider-Man's identity now revealed, our friendly neighborhood
-          web-slinger is unmasked and no longer able to separate his normal life
-          as Peter Parker from the high stakes of being a superhero. When Peter
-          asks for help from Doctor Strange, the stakes become even more
-          dangerous, forcing him to discover what it truly means to be
-          Spider-Man.
-        </span>
+      <img src={content.imgTitle} alt="" />
+        <span className="description">{content.description} </span>
         <div className="buttons">
           <button className="play">
             <PlayArrowIcon />
