@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 import ListItem from "./ListItem";
-import './Styles/List.scss'
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
-import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
+import "./Styles/List.scss";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 
-export default function List() {
+export default function List({ list }) {
   const [isMoved, setIsMoved] = useState(false);
   const [slideNumber, setSlideNumber] = useState(0);
   const [clickLimit, setClickLimit] = useState(window.innerWidth / 230);
@@ -16,11 +16,13 @@ export default function List() {
     setIsMoved(true);
     // let distance = listRef.current?.getBoundingClientRect().x ?? 0 - 50 ;
     let distance = listRef.current.getBoundingClientRect().x - 50;
-    if (direction === "left" && slideNumber > 0) {  //slide list if slider is at 0
+    if (direction === "left" && slideNumber > 0) {
+      //slide list if slider is at 0
       setSlideNumber(slideNumber - 1);
       listRef.current.style.transform = `translateX(${230 + distance}px)`;
     }
-    if (direction === "right" && slideNumber < 10 - clickLimit) { //max slide number is 10
+    if (direction === "right" && slideNumber < 10 - clickLimit) {
+      //max slide number is 10
       setSlideNumber(slideNumber + 1);
       listRef.current.style.transform = `translateX(${-230 + distance}px)`;
     }
@@ -28,7 +30,7 @@ export default function List() {
 
   return (
     <div className="list">
-      <span className="listTitle">Continue to watch</span>
+      <span className="listTitle">{list.title}</span>
       <div className="wrapper">
         <ArrowBackIosOutlinedIcon
           className="sliderArrow left"
@@ -38,21 +40,14 @@ export default function List() {
 
         {/* continer needs to have reference to distance */}
         <div className="container" ref={listRef}>
-            <ListItem index={0} />
-            <ListItem index={1}/>
-            <ListItem index={2}/>
-            <ListItem index={3}/>
-            <ListItem index={4}/>
-            <ListItem index={5}/>
-            <ListItem index={6}/>
-            <ListItem index={7}/>
-            <ListItem index={8}/>
-            <ListItem index={9}/>
-            <ListItem index={10}/>
+          {list.content.map((item, i) => (
+            <ListItem index={i} item={item} />
+          ))}
         </div>
+
         <ArrowForwardIosOutlinedIcon
           className="sliderArrow right"
-          onClick={() => handleClick("right")}  //attach handleclick to arrow forward button
+          onClick={() => handleClick("right")} //attach handleclick to arrow forward button
         />
       </div>
     </div>

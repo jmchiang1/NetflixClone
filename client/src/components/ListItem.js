@@ -1,15 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Styles/ListItem.scss";
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
+import axios from 'axios';
 
 
-function ListItem({index, item}) {
+function ListItem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
-  // const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState({});
+
+  console.log(item);  //returns movie id
+
+  useEffect(() => {
+    const getMovie = async () => {
+      try {
+        const res = await axios.get(`movies/find/${item}`, {
+          headers: {
+            token: 
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjIxMjYwNmIxMjU1NjI3MjgyMmY1NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MzU5MzkwOSwiZXhwIjoxNjQzNjgwMzA5fQ.pzWhzu0MS_zoP-3ly0CozsXO0RA7Wgb_ytDaoTpWcSY",
+          },
+        });
+        setMovie(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getMovie();
+  }, [item]);
 
   return (
     <div
@@ -19,17 +39,14 @@ function ListItem({index, item}) {
       onMouseLeave={() => setIsHovered(false)}>
       {isHovered ? (
         <ReactPlayer 
-        url="https://www.youtube.com/watch?v=JfVOs4VSpmA&ab_channel=SonyPicturesEntertainment"
+        url={movie.trailer}
         playing={true}
         width="100%"
         height="140px"
         muted={true}
         />
         ) :
-        <img
-        src="https://wallpaperboat.com/wp-content/uploads/2021/12/19/79926/spider-man-no-way-home-12.jpg"
-        alt=""
-      />
+        <img src={movie.img} alt="" />
       }
       <div className="itemInfo">
         <div className="icons">
@@ -39,19 +56,12 @@ function ListItem({index, item}) {
           <ThumbDownIcon className="icon" />
         </div>
         <div className="itemInfoTop">
-          <span>1 Hour 14 minutes</span>
-          <span className="limit">18+</span>
-          <span>2021</span>
+          <span>{movie.duration}</span>
+          <span className="limit">{movie.limit}</span>
+          <span>{movie.year}</span>
         </div>
-        <div className="desc">
-          With Spider-Man's identity now revealed, our friendly neighborhood
-          web-slinger is unmasked and no longer able to separate his normal life
-          as Peter Parker from the high stakes of being a superhero. When Peter
-          asks for help from Doctor Strange, the stakes become even more
-          dangerous, forcing him to discover what it truly means to be
-          Spider-Man.
-        </div>
-        <div className="genre">Action</div>
+        <div className="desc"> {movie.description} </div>
+        <div className="genre">{movie.genre}</div>
       </div>
     </div>
   );
