@@ -2,16 +2,22 @@ import React from "react";
 import "./Styles/Watch.scss";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import ReactPlayer from "react-player";
+import { Link, useLocation } from "react-router-dom";
 
 function Watch() {
+  const location = useLocation();
+  const movie = location.movie;
+
   return (
     <div className="watch">
-      <div className="back">
-        <ArrowBackOutlinedIcon />
-        Home
-      </div>
+      <Link to="/">
+        <div className="back">
+          <ArrowBackOutlinedIcon />
+          Home
+        </div>
+      </Link>
       <ReactPlayer
-        url="https://www.youtube.com/watch?v=JfVOs4VSpmA&ab_channel=SonyPicturesEntertainment"
+        url={movie.video}
         playing={true}
         width="100vw"
         height="100vh"
