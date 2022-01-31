@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import "./Styles/newMovie.css";
-import storage from "../../firebase";
-import { createMovie } from "../../context/movieContext/apiCalls";
-import { MovieContext } from "../../context/movieContext/MovieContext";
+// import storage from "../firebase";
+import { createMovie } from "../context/movieContext/apiCalls";
+import { MovieContext } from "../context/movieContext/MovieContext"
 
 export default function NewMovie() {
   const [movie, setMovie] = useState(null);
@@ -23,26 +23,26 @@ export default function NewMovie() {
   const upload = (items) => {
     items.forEach((item) => {
       const fileName = new Date().getTime() + item.label + item.file.name;
-      const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-            setMovie((prev) => {
-              return { ...prev, [item.label]: url };
-            });
-            setUploaded((prev) => prev + 1);
-          });
-        }
-      );
+      // const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
+      // uploadTask.on(
+      //   "state_changed",
+      //   (snapshot) => {
+      //     const progress =
+      //       (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      //     console.log("Upload is " + progress + "% done");
+      //   },
+      //   (error) => {
+      //     console.log(error);
+      //   },
+      //   () => {
+      //     uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+      //       setMovie((prev) => {
+      //         return { ...prev, [item.label]: url };
+      //       });
+      //       setUploaded((prev) => prev + 1);
+      //     });
+      //   }
+      // );
     });
   };
 

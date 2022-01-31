@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { login } from "../../context/authContext/apiCalls";
-import { AuthContext } from "../../context/authContext/AuthContext";
+import { login } from "../context/authContext/apiCalls";
+import { AuthContext } from "../context/authContext/AuthContext";
 import "./Styles/login.css";
 
 export default function Login() {
