@@ -3,27 +3,53 @@ const List = require("../models/ListModel");
 const verifyToken = require("../verifyToken");
 
 //GET ALL LISTS - works
+// router.get("/", verifyToken, async (req, res) => {
+//   const typeQuery = req.query.type;
+//   const genreQuery = req.query.genre;
+//   let list = [];
+//   try {
+//     if (typeQuery) {        //if type is selected
+//       if (genreQuery) {     //if genre is selected
+//         list = await List.aggregate([
+//           { $sample: { size: 10 } },
+//           { $match: { type: typeQuery, genre: genreQuery } },   //return 10 random movies/series of that genre
+//         ]);
+//       } else {
+//         list = await List.aggregate([
+//           { $sample: { size: 10 } },
+//           { $match: { type: typeQuery } },  //return 10 random movies/series of any genre
+//         ]);
+//       }
+//     } else {
+//       list = await List.aggregate([{ $sample: { size: 10 } }]); //return random sample of 10 movies/series
+//     }
+//     res.status(200).json(list); //return list data
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
 router.get("/", verifyToken, async (req, res) => {
   const typeQuery = req.query.type;
   const genreQuery = req.query.genre;
   let list = [];
   try {
-    if (typeQuery) {        //if type is selected
-      if (genreQuery) {     //if genre is selected
+    if (typeQuery) {
+      if (genreQuery) {
         list = await List.aggregate([
           { $sample: { size: 10 } },
-          { $match: { type: typeQuery, genre: genreQuery } },   //return 10 random movies/series of that genre
+          { $match: { type: typeQuery, genre: genreQuery } },
         ]);
       } else {
         list = await List.aggregate([
           { $sample: { size: 10 } },
-          { $match: { type: typeQuery } },  //return 10 random movies/series of any genre
+          { $match: { type: typeQuery } },
         ]);
       }
     } else {
-      list = await List.aggregate([{ $sample: { size: 10 } }]); //return random sample of 10 movies/series
+      list = await List.aggregate([{ $sample: { size: 10 } }]);
     }
-    res.status(200).json(list); //return list data
+    res.status(200).json(list);
   } catch (err) {
     res.status(500).json(err);
   }
