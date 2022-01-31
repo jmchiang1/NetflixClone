@@ -1,11 +1,15 @@
-
-import './App.css';
+import "./App.css";
+import Topbar from "./components/Topbar";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Admin Page</h1>
-    </div>
+    <div>
+      <Topbar />
+      <div className="container">
+        <Sidebar />
+      </div>
+    </div> 
   );
 }
 
