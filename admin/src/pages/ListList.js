@@ -1,4 +1,4 @@
-import "./listList.css";
+import "./Styles/listList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";

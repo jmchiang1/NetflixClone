@@ -1,4 +1,4 @@
-import "./sidebar.css";
+import "./Styles/sidebar.css";
 import {
   LineStyle,
   Timeline,

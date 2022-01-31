@@ -1,4 +1,4 @@
-import "./widgetLg.css";
+import "./Styles/widgetLg.css";
 
 export default function WidgetLg() {
   const Button = ({ type }) => {

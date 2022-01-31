@@ -1,4 +1,4 @@
-import "./widgetSm.css";
+import "./Styles/widgetSm.css";
 import { Visibility } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 import axios from "axios";

@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import "./movie.css";
+import "./Styles/movie.css";
 import { Publish } from "@material-ui/icons";
 
 export default function Movie() {
