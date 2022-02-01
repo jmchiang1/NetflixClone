@@ -27,11 +27,11 @@ export default function WidgetSm() {
     <div className="widgetSm">
       <span className="widgetSmTitle">New Join Members</span>
       <ul className="widgetSmList">
-        {newUsers.map((user) => (
+        {newUsers.map((user) => ( //map new users 
           <li className="widgetSmListItem">
             <img
               src={
-                user.profilePic ||
+                user.profilePic ||  //set img from DB or default image
                 "https://pbs.twimg.com/media/D8tCa48VsAA4lxn.jpg"
               }
               alt=""

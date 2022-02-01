@@ -1,63 +1,67 @@
 import "./Styles/Home.css";
 import FeaturedInfo from "./FeaturedInfo";
 import Chart from "./Chart";
-import { userData } from '../DummyData'
-import WidgetSm from './WidgetSm';
-import WidgetLg from './WidgetLg';
+import { userData } from "../DummyData";
+import WidgetSm from "./WidgetSm";
+import WidgetLg from "./WidgetLg";
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
 export default function Home() {
+  const MONTHS = useMemo(
+    () => [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Agu",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    []
+  );
 
-//   const MONTHS = useMemo(
-//     () => [
-//       "Jan",
-//       "Feb",
-//       "Mar",
-//       "Apr",
-//       "May",
-//       "Jun",
-//       "Jul",
-//       "Agu",
-//       "Sep",
-//       "Oct",
-//       "Nov",
-//       "Dec",
-//     ],
-//     []
-//   );
+  const [userStats, setUserStats] = useState([]);
 
-//   const [userStats, setUserStats] = useState([]);
-
-//   useEffect(() => {
-//     const getStats = async () => {
-//       try {
-//         const res = await axios.get("/users/stats", {
-//           headers: {
-//             token:
-//               "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTZmYzQ2NDk0Mjc3MTYwNDg4MmMxNiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyNTgzMjMxMSwiZXhwIjoxNjI2MjY0MzExfQ.ATXV-1TTWIGyVBttTQSf0erRWjsgZ8jHQv1ZsUixbng",
-//           },
-//         });
-//         const statsList = res.data.sort(function (a, b) {
-//           return a._id - b._id;
-//         });
-//         statsList.map((item) =>
-//           setUserStats((prev) => [
-//             ...prev,
-//             { name: MONTHS[item._id - 1], "New User": item.total },
-//           ])
-//         );
-//       } catch (err) {
-//         console.log(err);
-//       }
-//     };
-//     getStats();
-//   }, [MONTHS]);
+  useEffect(() => {
+    const getStats = async () => {
+      try {
+        const res = await axios.get("/users/stats", {
+          headers: {
+            token:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjIxMjYwNmIxMjU1NjI3MjgyMmY1NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MzczMDg5MCwiZXhwIjoxNjQzODE3MjkwfQ.Lrif3aCtR-x0harBkbj4JdMEfJxWdJF4JmUqeQamvbk",
+          },
+        });
+        const statsList = res.data.sort(function (a, b) {
+          return a._id - b._id;
+        });
+        statsList.map((item) =>
+          setUserStats((prev) => [
+            ...prev,
+            { name: MONTHS[item._id - 1], "New User": item.total },
+          ])
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getStats();
+  }, [MONTHS]);
 
   return (
     <div className="home">
       <FeaturedInfo />
-      <Chart data={userData} title="User Analytics" grid dataKey="Active User" />
+      <Chart
+        data={userStats}
+        title="User Analytics"
+        grid
+        dataKey="New User"
+      />
       <div className="homeWidgets">
         <WidgetSm />
         <WidgetLg />

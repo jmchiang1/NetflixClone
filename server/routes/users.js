@@ -73,20 +73,20 @@ router.delete("/:id", verifyToken, async (req, res) => {
 
 //GET USER STATS - works with postman
 router.get("/stats", async (req, res) => {
-  // const today = new Date();
-  // const lastYear = today.setFullYear(today.setFullYear() - 1);
+  const today = new Date();
+  const latYear = today.setFullYear(today.setFullYear() - 1);
 
   try {
     const data = await User.aggregate([
       {
         $project: {
-          month: { $year: "$createdAt" },
+          month: { $month: "$createdAt" },
         },
       },
       {
         $group: {
           _id: "$month",
-          total: { $sum: 1 }, //returns total users per month
+          total: { $sum: 1 }, //returns total users per month 
         },
       },
     ]);
