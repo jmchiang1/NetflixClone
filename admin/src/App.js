@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
@@ -9,14 +9,23 @@ import NewUser from "./components/NewUser";
 import MovieList from "./components/MovieList";
 import Movie from "./components/Movie";
 import NewMovie from "./components/NewMovie";
+import Login from "./components/Login";
+import { AuthContext } from "./context/authContext/AuthContext";
+import { useContext } from "react";
 
 function App() {
+  const { user } = useContext(AuthContext);
+
   return (
     <BrowserRouter>
       <Topbar />
       <div className="container">
         <Sidebar />
         <Routes>
+          <Route
+            path="/login"
+            element={!user ? <Login /> : <Navigate to="/" />}
+          />
           <Route exact path="/" element={<Home />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/user/:userId" element={<User />} />

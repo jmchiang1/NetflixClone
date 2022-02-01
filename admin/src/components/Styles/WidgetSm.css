@@ -14,15 +14,15 @@
 .widgetSmImg{
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 20%;
     object-fit: cover;
 }
 
-.widgetSmList{
+/* .widgetSmList{
     margin: 0;
     padding: 0;
     list-style: none;
-}
+} */
 
 .widgetSmListItem{
     display: flex;

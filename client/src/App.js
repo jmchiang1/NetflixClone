@@ -18,13 +18,13 @@ function App() {
         />
         <Route
           path="/register"
-          element={!user ? <Register /> : <Navigate to="/" />}  //if user redirect to home
+          element={!user ? <Register /> : <Navigate to="/" />} //if user redirect to home
         />
         <Route
           path="/login"
           element={!user ? <Login /> : <Navigate to="/" />}
         />
-        {user && (  //if user logged in, able to see these pages 
+        {user && ( //if user logged in, able to see these pages
           <>
             <Route path="/movies" element={<Home type="movies" />} />
             <Route path="/series" element={<Home type="series" />} />
