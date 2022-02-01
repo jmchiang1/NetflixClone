@@ -6,6 +6,9 @@ import Home from "./components/Home";
 import UserList from "./components/UserList";
 import User from "./components/User";
 import NewUser from "./components/NewUser";
+import MovieList from "./components/MovieList";
+import Movie from "./components/Movie";
+import NewMovie from "./components/NewMovie";
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
           <Route path="/users" element={<UserList />} />
           <Route path="/user/:userId" element={<User />} />
           <Route path="/newUser" element={<NewUser />} />
+          <Route path="/movies" element={<MovieList />} />
+          <Route path="/movies/:movieId" element={<Movie />} />
+          <Route path="/newMovie/" element={<NewMovie />} />
         </Routes>
       </div>
     </BrowserRouter>
