@@ -8,14 +8,14 @@ import UserList from "./components/UserList";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Topbar />
-        <div className="container">
-          <Sidebar />
-          <Route path="/" element={<Home />} />
-          <Route path="/user" element={<UserList/>} />
-        </div>
-      </Routes>
+      <Topbar />
+      <div className="container">
+        <Sidebar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/user" element={<UserList />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
