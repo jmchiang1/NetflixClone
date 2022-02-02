@@ -17,39 +17,33 @@ export default function Movie() {
     const getMovie = async () => {
       try {
         const res = await axios.get("/movies/find/" + params.movieId, {
-          //GET single movie endpoint in DB
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-          },
+          }
         });
-        setMovie(res.data); //change state of movie with res.data
-      } catch (err) {
-        console.log(err);
+        setMovie(res.data);
+      } catch (error) {
+        console.log(error);
       }
-    };
+    }
     getMovie();
-  }, [params]); //fire everytime movie id is changed
+  },[params])
 
   const handleChange = (e) => {
-    //collects the input data adds it to movie object
     const value = e.target.value;
-    setMovie({ ...movie, [e.target.name]: value });
-  };
-
+    setMovie({...movie, [e.target.name]: value});
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     updateMovie(movie._id, dispatch, movie);
-    alert("Edit Successful");
-  };
+    alert("Edit successfully");
+  }
 
   return (
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">Movie</h1>
-        {/* <Link to="/newMovie">
-          <button className="productAddButton">Create</button>
-        </Link> */}
       </div>
       <div className="productTop">
         <div className="productTopRight">
@@ -133,9 +127,9 @@ export default function Movie() {
           <div className="productFormRight">
             <div className="productUpload">
               <img src={movie.img} alt="" className="productUploadImg" />
-              <label htmlFor="text">
-                <Publish />
-              </label>
+              {/* <label htmlFor="text"> */}
+                {/* <Publish /> */}
+              {/* </label> */}
               <input type="text" id="text" style={{ display: "none" }} />
             </div>
             <button className="productButton" onClick={handleSubmit}>

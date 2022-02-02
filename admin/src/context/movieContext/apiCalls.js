@@ -28,7 +28,7 @@ export const getMovies = async (dispatch) => {
   }
 };
 
-//create
+//CREATE NEW MOVIE
 export const createMovie = async (movie, dispatch) => {
   dispatch(createMovieStart());
   try {
@@ -43,23 +43,7 @@ export const createMovie = async (movie, dispatch) => {
   }
 };
 
-//update
-export const updateMovie = async (id, dispatch, movie) => {
-  dispatch(updateMovieStart());
-  try {
-    const res = await axios.put("movies/" + id, movie, {
-      headers: {
-        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-      },
-    });
-    dispatch(updateMovieSuccess(res.data));
-    //console.log("data: ",res.data);
-  } catch (err) {
-    dispatch(updateMovieFailure());
-  }
-};
-
-//delete
+//DELETE MOVIE
 export const deleteMovie = async (id, dispatch) => {
   dispatch(deleteMovieStart());
   try {
@@ -71,5 +55,21 @@ export const deleteMovie = async (id, dispatch) => {
     dispatch(deleteMovieSuccess(id));
   } catch (err) {
     dispatch(deleteMovieFailure());
+  }
+};
+
+//UPDATE EXISTING MOVIE 
+export const updateMovie = async (id, dispatch, movie) => { //takes in id, dispatch, and existing movie object
+  dispatch(updateMovieStart()); //start updating movie
+  try {
+    const res = await axios.put("/movies/" + id, movie, {  //PUT request to backend
+      headers: {
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+      },
+    });
+    dispatch(updateMovieSuccess(res.data)); //update movie success
+    //console.log("data: ",res.data);
+  } catch (err) {
+    dispatch(updateMovieFailure()); //update movie failure 
   }
 };

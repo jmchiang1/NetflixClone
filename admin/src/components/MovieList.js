@@ -15,16 +15,15 @@ export default function MovieList() {
 
   const handleDelete = (id) => {
     deleteMovie(id, dispatch);
+    alert("Delete successfully !")
   };
 
-  // console.log("MOVIE LIST", movies) //returns list of movies
-
   const columns = [
-    { field: "_id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 150 },
     {
       field: "movie",
       headerName: "Movie",
-      width: 200,
+      width: 300,
       renderCell: (params) => {
         return (
           <div className="productListItem">
@@ -63,11 +62,6 @@ export default function MovieList() {
 
   return (
     <div className="productList">
-      <div className="newproduct">
-        <Link to="/newMovie">
-          <button className="productAddButton">Create</button>
-        </Link>
-      </div>
       <DataGrid
         rows={movies}
         disableSelectionOnClick
@@ -75,6 +69,7 @@ export default function MovieList() {
         pageSize={10}
         checkboxSelection
         getRowId={(r) => r._id}
+        height="106%"
       />
     </div>
   );

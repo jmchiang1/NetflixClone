@@ -20,20 +20,6 @@ export default function NewMovie() {
     isSeries: false,
   });
 
-//   const {
-//     title,
-//     description,
-//     img,
-//     imgTitle,
-//     imgSmall,
-//     trailer,
-//     video,
-//     year,
-//     limit,
-//     genre,
-//     isSeries,
-//   } = movie;
-
   const handleChange = (e) => {
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
