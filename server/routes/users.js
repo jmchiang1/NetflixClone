@@ -59,7 +59,7 @@ router.get("/find/:id", async (req, res) => {
 router.get("/", verifyToken, async (req, res) => {
   const query = req.query.new;
   if (req.user.isAdmin === true) { //error here
-    console.log("REQ.USER.ISADMIN",req.user.isAdmin)  //RETURNS TRUE IN POSTMAN
+    // console.log("REQ.USER.ISADMIN",req.user.isAdmin)  //RETURNS TRUE IN POSTMAN
     try {
       const users = query
         ? await User.find().sort({ _id: -1 }).limit(5)
