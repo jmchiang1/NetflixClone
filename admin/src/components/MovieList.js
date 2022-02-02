@@ -10,7 +10,7 @@ export default function MovieList() {
   const { movies, dispatch } = useContext(MovieContext);
 
   useEffect(() => {
-    getMovies(dispatch);  //grab all movies 
+    getMovies(dispatch);
   }, [dispatch]);
 
   const handleDelete = (id) => {
@@ -67,7 +67,7 @@ export default function MovieList() {
         columns={columns}
         pageSize={10}
         checkboxSelection
-        getRowId={(row) => row._id}
+        getRowId={(r) => r._id}
       />
     </div>
   );
