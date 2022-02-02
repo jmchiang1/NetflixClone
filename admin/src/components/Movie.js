@@ -1,49 +1,55 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Publish } from "@material-ui/icons";
 import "./Styles/Movie.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { MovieContext } from "../context/movieContext/MovieContext";
 import { updateMovie } from "../context/movieContext/apiCalls";
-
+import axios from "axios";
 
 export default function Movie() {
+  const [movie, setMovie] = useState([]); //state of single movie object
   const { dispatch } = useContext(MovieContext);
+  const params = useParams(); //grabs movie id
 
-  const [movies, setMovie] = useState({
-    title: "",
-    description: "",
-    img: "",
-    imgTitle: "",
-    imgSmall: "",
-    trailer: "",
-    video: "",
-    year: "",
-    limit: "",
-    genre: "",
-    isSeries: false,
-  });
+  // console.log("DISPATCH", dispatch);
 
+  useEffect(() => {
+    const getMovie = async () => {
+      try {
+        const res = await axios.get("/movies/find/" + params.movieId, {
+          //GET single movie endpoint in DB
+          headers: {
+            token:
+              "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+          },
+        });
+        setMovie(res.data); //change state of movie with res.data
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getMovie();
+  }, [params]); //fire everytime movie id is changed
 
   const handleChange = (e) => {
+    //collects the input data adds it to movie object
     const value = e.target.value;
-    setMovie({ ...movies, [e.target.name]: value });
+    setMovie({ ...movie, [e.target.name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateMovie(movies, dispatch);
+    updateMovie(movie._id, dispatch, movie);
+    alert("Edit Successful");
   };
 
-  const location = useLocation();
-  const movie = location.movie;
-
-  console.log("LOCATION",location)  //returns correct path name
-  console.log("MOVIE",movie)        //returns entire movie object 
-  
   return (
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">Movie</h1>
+        {/* <Link to="/newMovie">
+          <button className="productAddButton">Create</button>
+        </Link> */}
       </div>
       <div className="productTop">
         <div className="productTopRight">
@@ -75,34 +81,89 @@ export default function Movie() {
         <form className="productForm">
           <div className="productFormLeft">
             <label>Movie Title</label>
-            <input type="text" placeholder={movie.title} id="title" name="title" onChange={handleChange} />
+            <input
+              type="text"
+              name="title"
+              value={movie.title}
+              onChange={handleChange}
+            />
             <label>Year</label>
-            <input type="text" placeholder={movie.year} id="year" name="year" onChange={handleChange} />
+            <input
+              type="text"
+              name="year"
+              value={movie.year}
+              onChange={handleChange}
+            />
             <label>Genre</label>
-            <input type="text" placeholder={movie.genre} id="genre" name="genre" onChange={handleChange} />
+            <input
+              type="text"
+              name="genre"
+              value={movie.genre}
+              onChange={handleChange}
+            />
             <label>Limit</label>
-            <input type="text" placeholder={movie.limit} id="limit" name="limit" onChange={handleChange} />
+            <input
+              type="text"
+              name="limit"
+              value={movie.limit}
+              onChange={handleChange}
+            />
+            <label>Image</label>
+            <input
+              type="text"
+              name="img"
+              value={movie.img}
+              onChange={handleChange}
+            />
             <label>Trailer</label>
-            <input type="text" placeholder={movie.trailer} id="trailer" name="trailer" onChange={handleChange} />
+            <input
+              type="text"
+              name="trailer"
+              value={movie.trailer}
+              onChange={handleChange}
+            />
             <label>Video</label>
-            <input type="text" placeholder={movie.video} id="video" name="video" onChange={handleChange} />
+            <input
+              type="text"
+              name="video"
+              value={movie.video}
+              onChange={handleChange}
+            />
           </div>
           <div className="productFormRight">
             <div className="productUpload">
-              <img
-                src={movie.img}
-                alt=""
-                className="productUploadImg"
-              />
-              <label for="text">
+              <img src={movie.img} alt="" className="productUploadImg" />
+              <label htmlFor="text">
                 <Publish />
               </label>
-              <input type="text" id="img" name="img" style={{ display: "none" }} onChange={handleChange} />
+              <input type="text" id="text" style={{ display: "none" }} />
             </div>
-            <button className="productButton" onChange={handleSubmit}>Update</button>
+            <button className="productButton" onClick={handleSubmit}>
+              Update
+            </button>
           </div>
         </form>
       </div>
     </div>
   );
 }
+
+//NOT USED CODE
+// const [movies, setMovie] = useState({
+//   title: "",
+//   description: "",
+//   img: "",
+//   imgTitle: "",
+//   imgSmall: "",
+//   trailer: "",
+//   video: "",
+//   year: "",
+//   limit: "",
+//   genre: "",
+//   isSeries: false,
+// });
+
+// const location = useLocation();
+// const movie = location.movie;
+// console.log("LOCATION",location)  //returns correct path name
+// console.log("MOVIE",movie)        //returns entire movie object

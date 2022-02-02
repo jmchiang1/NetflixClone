@@ -44,15 +44,16 @@ export const createMovie = async (movie, dispatch) => {
 };
 
 //update
-export const updateMovie = async (movie, dispatch) => {
+export const updateMovie = async (id, dispatch, movie) => {
   dispatch(updateMovieStart());
   try {
-    const res = await axios.put("/movies", movie, {
+    const res = await axios.put("movies/" + id, movie, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
     });
     dispatch(updateMovieSuccess(res.data));
+    //console.log("data: ",res.data);
   } catch (err) {
     dispatch(updateMovieFailure());
   }
