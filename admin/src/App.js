@@ -14,7 +14,7 @@ import { AuthContext } from "./context/authContext/AuthContext";
 import { useContext } from "react";
 
 function App() {
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext); //logged in user context information 
 
   return (
     <BrowserRouter>
@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route
             path="/login"
-            element={!user ? <Login /> : <Navigate to="/" />}
+            element={user ? <Login /> : <Navigate to="/" />}
           />
           <Route exact path="/" element={<Home />} />
           <Route path="/users" element={<UserList />} />

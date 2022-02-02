@@ -1,6 +1,6 @@
 const MovieReducer = (state, action) => {
   switch (action.type) {
-    case "GET_MOVIES_START":
+    case "GET_MOVIES_START":  //initial state of movies 
       return {
         movies: [],
         isFetching: true,
@@ -8,25 +8,25 @@ const MovieReducer = (state, action) => {
       };
     case "GET_MOVIES_SUCCESS":
       return {
-        movies: action.payload,
+        movies: action.payload, //if successful, return movies
         isFetching: false,
         error: false,
       };
     case "GET_MOVIES_FAILURE":
       return {
-        movies: [],
+        movies: [],         //if failure return empty array
         isFetching: false,
         error: true,
       };
     case "CREATE_MOVIE_START":
       return {
-        ...state,
+        ...state, //return previous state
         isFetching: true,
         error: false,
       };
     case "CREATE_MOVIE_SUCCESS":
       return {
-        movies: [...state.movies, action.payload],
+        movies: [...state.movies, action.payload],  //add movie to existing list 
         isFetching: false,
         error: false,
       };
@@ -44,7 +44,7 @@ const MovieReducer = (state, action) => {
       };
     case "UPLOAD_MOVIE_SUCCESS":
       return {
-        movies: state.movies.map(
+        movies: state.movies.map( //map movie array 
           (movie) => movie._id === action.payload._id && action.payload
         ),
         isFetching: false,
@@ -64,7 +64,7 @@ const MovieReducer = (state, action) => {
       };
     case "DELETE_MOVIE_SUCCESS":
       return {
-        movies: state.movies.filter((movie) => movie._id !== action.payload),
+        movies: state.movies.filter((movie) => movie._id !== action.payload), //delete single movie that matches id 
         isFetching: false,
         error: false,
       };

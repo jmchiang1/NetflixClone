@@ -14,9 +14,9 @@ import {
 export const getMovies = async (dispatch) => {
   dispatch(getMoviesStart());
   try {
-    const res = await axios.get("/movies", {
+    const res = await axios.get("/movies", {  //fetch from "/movies" endpoint 
       headers: {
-        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,  //grab access token from local storage
       },
     });
     dispatch(getMoviesSuccess(res.data));

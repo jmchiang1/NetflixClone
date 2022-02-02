@@ -1,7 +1,7 @@
 import MovieReducer from "./MovieReducer";
 import { createContext, useReducer } from "react";
 
-const INITIAL_STATE = {
+const INITIAL_STATE = { //initial movie state
   movies: [],
   isFetching: false,
   error: false,
