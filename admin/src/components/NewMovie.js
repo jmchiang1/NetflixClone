@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import "./Styles/NewMovie.css";
 import { createMovie } from "../context/movieContext/apiCalls";
 import { MovieContext } from "../context/movieContext/MovieContext";
+import { useHistory } from "react-router-dom";
+
 
 export default function NewMovie() {
   const { dispatch } = useContext(MovieContext);
@@ -27,9 +29,18 @@ export default function NewMovie() {
 
   console.log("movie", movie);
 
+  let history = useHistory();
+
   const handleSubmit = (e) => {
-    e.preventDefault();
-    createMovie(movie, dispatch);
+    try {
+      e.preventDefault();
+      createMovie(movie, dispatch);
+      alert("Movie Successfully created");
+      history.push("/movies")
+    } catch (err) {
+      console.log("Error in creating movie");
+      alert("Error in creating movie");
+    }
   };
 
   return (
