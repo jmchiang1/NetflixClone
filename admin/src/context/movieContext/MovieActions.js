@@ -1,3 +1,4 @@
+//GET MOVIES
 export const getMoviesStart = () => ({  //start the get movie process
   type: "GET_MOVIES_START",
 });
@@ -11,6 +12,7 @@ export const getMoviesFailure = () => ({
   type: "GET_MOVIES_FAILURE",
 });
 
+//CREATE NEW MOVIE
 export const createMovieStart = () => ({
   type: "CREATE_MOVIE_START",
 });
@@ -24,6 +26,7 @@ export const createMovieFailure = () => ({
   type: "CREATE_MOVIE_FAILURE",
 });
 
+//UPDATE EXISTING MOVIE
 export const updateMovieStart = () => ({
   type: "UPDATE_MOVIE_START",
 });
@@ -37,6 +40,7 @@ export const updateMovieFailure = () => ({
   type: "UPDATE_MOVIE_FAILURE",
 });
 
+//DELETE MOVIE
 export const deleteMovieStart = () => ({
   type: "DELETE_MOVIE_START",
 });
