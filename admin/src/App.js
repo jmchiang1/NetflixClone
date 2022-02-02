@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
@@ -15,27 +15,50 @@ import { useContext } from "react";
 
 function App() {
   const { user } = useContext(AuthContext); //logged in user context information 
-
   return (
-    <BrowserRouter>
-      <Topbar />
-      <div className="container">
-        <Sidebar />
-        <Routes>
-          <Route
-            path="/login"
-            element={user ? <Login /> : <Navigate to="/" />}
-          />
-          <Route exact path="/" element={<Home />} />
-          <Route path="/users" element={<UserList />} />
-          <Route path="/user/:userId" element={<User />} />
-          <Route path="/newUser" element={<NewUser />} />
-          <Route path="/movies" element={<MovieList />} />
-          <Route path="/movie/:movieId" element={<Movie />} />
-          <Route path="/newMovie/" element={<NewMovie />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <Router>
+      <Switch>
+        <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
+        {user && (
+          <>
+            <Topbar />
+            <div className="container">
+              <Sidebar />
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/users">
+                <UserList />
+              </Route>
+              <Route path="/user/:userId">
+                <User />
+              </Route>
+              <Route path="/newUser">
+                <NewUser />
+              </Route>
+              <Route path="/movies">
+                <MovieList />
+              </Route>
+              <Route path="/movie/:movieId">
+                <Movie />
+              </Route>
+              <Route path="/newMovie">
+                <NewMovie />
+              </Route>
+              {/* <Route path="/lists">
+                <ListList />
+              </Route>
+              <Route path="/list/:listId">
+                <List />
+              </Route>
+              <Route path="/newlist">
+                <NewList />
+              </Route> */}
+            </div>
+          </>
+        )}
+      </Switch>
+    </Router>
   );
 }
 
