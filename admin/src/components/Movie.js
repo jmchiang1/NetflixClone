@@ -8,15 +8,12 @@ export default function Movie() {
   const movie = location.movie;
 
   console.log("LOCATION",location)  //returns correct path name
-  console.log("MOVIE",movie)        // returns undefined
+  console.log("MOVIE",movie)        //returns entire movie object 
   
   return (
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">Movie</h1>
-        <Link to="/newproduct">
-          <button className="productAddButton">Create</button>
-        </Link>
       </div>
       <div className="productTop">
         <div className="productTopRight">

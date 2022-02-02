@@ -3,7 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
-import { MovieContext } from '../context/movieContext/MovieContext'
+import { MovieContext } from "../context/movieContext/MovieContext";
 import { deleteMovie, getMovies } from "../context/movieContext/apiCalls";
 
 export default function MovieList() {
@@ -17,7 +17,7 @@ export default function MovieList() {
     deleteMovie(id, dispatch);
   };
 
-  // console.log("MOVIE LIST", movies) //returns list of movies 
+  // console.log("MOVIE LIST", movies) //returns list of movies
 
   const columns = [
     { field: "_id", headerName: "ID", width: 90 },
@@ -63,6 +63,11 @@ export default function MovieList() {
 
   return (
     <div className="productList">
+      <div className="newproduct">
+        <Link to="/newMovie">
+          <button className="productAddButton">Create</button>
+        </Link>
+      </div>
       <DataGrid
         rows={movies}
         disableSelectionOnClick
