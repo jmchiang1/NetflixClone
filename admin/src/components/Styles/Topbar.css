@@ -5,11 +5,12 @@
     position: sticky;
     top: 0;
     z-index: 999;
+    margin-top: .5rem;
   }
   
   .topbarWrapper {
     height: 100%;
-    padding: 0px 20px;
+    padding: 0px 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -52,6 +53,6 @@
   .topAvatar{
       width: 40px;
       height: 40px;
-      border-radius: 50%;
+      border-radius: 5px;
       cursor: pointer;
   }

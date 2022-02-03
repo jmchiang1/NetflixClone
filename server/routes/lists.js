@@ -3,32 +3,6 @@ const List = require("../models/ListModel");
 const verifyToken = require("../verifyToken");
 
 //GET ALL LISTS - works
-// router.get("/", verifyToken, async (req, res) => {
-//   const typeQuery = req.query.type;
-//   const genreQuery = req.query.genre;
-//   let list = [];
-//   try {
-//     if (typeQuery) {        //if type is selected
-//       if (genreQuery) {     //if genre is selected
-//         list = await List.aggregate([
-//           { $sample: { size: 10 } },
-//           { $match: { type: typeQuery, genre: genreQuery } },   //return 10 random movies/series of that genre
-//         ]);
-//       } else {
-//         list = await List.aggregate([
-//           { $sample: { size: 10 } },
-//           { $match: { type: typeQuery } },  //return 10 random movies/series of any genre
-//         ]);
-//       }
-//     } else {
-//       list = await List.aggregate([{ $sample: { size: 10 } }]); //return random sample of 10 movies/series
-//     }
-//     res.status(200).json(list); //return list data
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
 router.get("/", verifyToken, async (req, res) => {
   const typeQuery = req.query.type;
   const genreQuery = req.query.genre;
@@ -57,7 +31,7 @@ router.get("/", verifyToken, async (req, res) => {
 
 //CREATE LIST for homepage - works with postman
 router.post("/", verifyToken, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.isAdmin === true) {
     const newList = new List(req.body);
     try {
       const savedList = await newList.save();
@@ -72,7 +46,7 @@ router.post("/", verifyToken, async (req, res) => {
 
 //DELETE LIST - works
 router.delete("/:id", verifyToken, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.isAdmin === true) {
     try {
       await List.findByIdAndDelete(req.params.id);
       res.status(201).json("The list has been deleted");
@@ -85,3 +59,30 @@ router.delete("/:id", verifyToken, async (req, res) => {
 });
 
 module.exports = router;
+
+//OLD CODE 
+// router.get("/", verifyToken, async (req, res) => {
+//   const typeQuery = req.query.type;
+//   const genreQuery = req.query.genre;
+//   let list = [];
+//   try {
+//     if (typeQuery) {        //if type is selected
+//       if (genreQuery) {     //if genre is selected
+//         list = await List.aggregate([
+//           { $sample: { size: 10 } },
+//           { $match: { type: typeQuery, genre: genreQuery } },   //return 10 random movies/series of that genre
+//         ]);
+//       } else {
+//         list = await List.aggregate([
+//           { $sample: { size: 10 } },
+//           { $match: { type: typeQuery } },  //return 10 random movies/series of any genre
+//         ]);
+//       }
+//     } else {
+//       list = await List.aggregate([{ $sample: { size: 10 } }]); //return random sample of 10 movies/series
+//     }
+//     res.status(200).json(list); //return list data
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });

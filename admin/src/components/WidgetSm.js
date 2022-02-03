@@ -9,19 +9,18 @@ export default function WidgetSm() {
   useEffect(() => {
     const getNewUsers = async () => {
       try {
-        const res = await axios.get("/users?new=true", {
+        const res = await axios.get("users?new=true", {
           headers: {
-            token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjIxMjYwNmIxMjU1NjI3MjgyMmY1NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0Mzc0MDk5NSwiZXhwIjoxNjQzODI3Mzk1fQ.Ics794Y_p0614C97z8_6WI_9o3ukCOvEgwnkswlM2n0",
+            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
-        });
+        })
         setNewUsers(res.data);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
     getNewUsers();
-  }, []);
+  }, [])
   
   return (
     <div className="widgetSm">

@@ -4,7 +4,7 @@ const verifyToken = require("../verifyToken");
 
 //GET ALL MOVIES - works with postman
 router.get("/", verifyToken, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.isAdmin === true) {
     try {
       const movies = await Movie.find();
       res.status(200).json(movies.reverse());   //sort movies by most recent
@@ -50,7 +50,7 @@ router.get("/random", verifyToken, async (req, res) => {
 
 //CREATE MOVIE - works with postman
 router.post("/", verifyToken, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.isAdmin === true) {
     const newMovie = new Movie(req.body);
     try {
       const saveMovie = await newMovie.save();
@@ -65,7 +65,7 @@ router.post("/", verifyToken, async (req, res) => {
 
 //UPDATE EXISTING MOVIE
 router.put("/:id", verifyToken, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.isAdmin === true) {
     try {
       const updateMovie = await Movie.findByIdAndUpdate(
         req.params.id,
@@ -83,7 +83,7 @@ router.put("/:id", verifyToken, async (req, res) => {
 
 //DELETE EXISTING MOVIE
 router.delete("/:id", verifyToken, async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.isAdmin === true) {
     try {
       const deleteMovie = await Movie.findByIdAndDelete(req.params.id);
       res.status(200).json({ message: "Movie has been deleted" });

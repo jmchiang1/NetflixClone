@@ -10,6 +10,7 @@ import MovieList from "./components/MovieList";
 import Movie from "./components/Movie";
 import NewMovie from "./components/NewMovie";
 import Login from "./components/Login";
+import ListList from "./components/ListList";
 import { AuthContext } from "./context/authContext/AuthContext";
 import { useContext } from "react";
 
@@ -45,10 +46,10 @@ function App() {
               <Route path="/newMovie">
                 <NewMovie />
               </Route>
-              {/* <Route path="/lists">
+              <Route path="/lists">
                 <ListList />
               </Route>
-              <Route path="/list/:listId">
+              {/* <Route path="/list/:listId">
                 <List />
               </Route>
               <Route path="/newlist">

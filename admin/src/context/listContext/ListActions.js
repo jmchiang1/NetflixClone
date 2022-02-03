@@ -1,3 +1,4 @@
+//GET LIST
 export const getListsStart = () => ({
   type: "GET_LISTS_START",
 });
@@ -11,6 +12,7 @@ export const getListsFailure = () => ({
   type: "GET_LISTS_FAILURE",
 });
 
+//CREATE NEW LIST 
 export const createListStart = () => ({
   type: "CREATE_LIST_START",
 });
@@ -24,6 +26,7 @@ export const createListFailure = () => ({
   type: "CREATE_LIST_FAILURE",
 });
 
+//UPDATE EXISTING LIST 
 export const updateListStart = () => ({
   type: "UPDATE_LIST_START",
 });
@@ -37,6 +40,7 @@ export const updateListFailure = () => ({
   type: "UPDATE_LIST_FAILURE",
 });
 
+//DELETE LIST 
 export const deleteListStart = () => ({
   type: "DELETE_LIST_START",
 });

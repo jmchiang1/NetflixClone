@@ -4,7 +4,7 @@ const CryptoJS = require("crypto-js");
 const verifyToken = require("../verifyToken");
 
 router.put("/:id", verifyToken, async (req, res) => {
-  if (req.user.id === req.params.id || req.user.isAdmin) {
+  if (req.user.id === req.params.id || req.user.isAdmin === true) {
     if (req.body.password) {
       req.body.password = CryptoJS.AES.encrypt(
         req.body.password,
@@ -31,7 +31,7 @@ router.put("/:id", verifyToken, async (req, res) => {
 
 //DELETE
 router.delete("/:id", verifyToken, async (req, res) => {
-  if (req.user.id === req.params.id || req.user.isAdmin) {
+  if (req.user.id === req.params.id || req.user.isAdmin  === true) {
     try {
       await User.findByIdAndDelete(req.params.id);
       res.status(200).json("User has been deleted...");
