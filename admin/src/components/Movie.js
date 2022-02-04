@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Publish } from "@material-ui/icons";
 import "./Styles/Movie.css";
 import { useContext, useState, useEffect } from "react";
@@ -34,10 +34,14 @@ export default function Movie() {
     const value = e.target.value;
     setMovie({...movie, [e.target.name]: value});
   }
+
+  let history = useHistory();
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     updateMovie(movie._id, dispatch, movie);
     alert("Edit successfully");
+    history.push("/movies")
   }
 
   return (
