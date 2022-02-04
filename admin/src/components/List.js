@@ -1,9 +1,8 @@
 import './Styles/List.css'
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { useState, useContext } from "react";
 import { ListContext } from "../context/listContext/ListContext";
 import { updateList } from "../context/listContext/apiCalls";
-//import { Publish } from "@material-ui/icons";
 
 export default function List() {
 
@@ -17,11 +16,16 @@ export default function List() {
         const value = e.target.value;
         setList({...list, [e.target.name]: value});
     }
+
+    let history = useHistory();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         updateList(list._id, dispatch, list);
         alert("Edit List Successful");
+        // history.push("/lists");
     }
+
     return (
         <div className="product">
             <div className="productTitleContainer">

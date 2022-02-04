@@ -14,64 +14,64 @@ import {
   updateListSuccess,
 } from "./ListActions";
 
-//GET LIST
+//GET LISTS
 export const getLists = async (dispatch) => {
-  dispatch(getListsStart());
-  try {
-    const res = await axios.get("/lists", {
-      headers: {
-        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-      },
-    });
-    dispatch(getListsSuccess(res.data));
-  //   console.log(res.data);
-  } catch (error) {
-    dispatch(getListsFailure());
-  }
+    dispatch(getListsStart());
+    try {
+      const res = await axios.get("/lists", {
+        headers: {
+          token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+        },
+      });
+      dispatch(getListsSuccess(res.data));
+    //   console.log(res.data);
+    } catch (error) {
+      dispatch(getListsFailure());
+    }
 };
 
-//CREATE LIST
+//CREATE
 export const createList = async (list, dispatch) => {
-  dispatch(createListStart());
-  try {
-      const res = await axios.post("/lists", list, {
-          headers: {
-              token: "Bearer" + JSON.parse(localStorage.getItem('user')).accessToken,
-          }
-      })
-      dispatch(createListSuccess(res.data));
-  } catch (error) {
-      dispatch(createListFailure());
-  }
+    dispatch(createListStart());
+    try {
+        const res = await axios.post("/lists", list, {
+            headers: {
+                token: "Bearer" + JSON.parse(localStorage.getItem('user')).accessToken,
+            }
+        })
+        dispatch(createListSuccess(res.data));
+    } catch (error) {
+        dispatch(createListFailure());
+    }
 };
 
-//DELETE LIST 
+//DELETE
 export const deleteList = async (id, dispatch) => {
-  dispatch(deleteListStart());
-  try {
-      await axios.delete("/lists/" + id, {
-          headers: {
-              token: "Bearer" + JSON.parse(localStorage.getItem('user')).accessToken,
-          }
-      })
-      dispatch(deleteListSuccess(id));
-  } catch (error) {
-      dispatch(deleteListFailure());
-  }
+    dispatch(deleteListStart());
+    try {
+        await axios.delete("/lists/" + id, {
+            headers: {
+                token: "Bearer" + JSON.parse(localStorage.getItem('user')).accessToken,
+            }
+        })
+        dispatch(deleteListSuccess(id));
+    } catch (error) {
+        dispatch(deleteListFailure());
+    }
 };
 
-//UPDATE LIST 
+//UPDATE
 export const updateList = async (id, dispatch, list) => {
-  dispatch(updateListStart());
-  try {
-      const res = await axios.put("/lists/" + id, list, {
-          headers: {
-              token: "Bearer" + JSON.parse(localStorage.getItem('user')).accessToken,
-          }
-      })
-      dispatch(updateListSuccess(res.data))
-      // console.log(res.data);
-  } catch (error) {
-      dispatch(updateListFailure());
-  }
+    dispatch(updateListStart());
+    try {
+        const res = await axios.put("/lists/" + id, list, {
+            headers: {
+                token: "Bearer" + JSON.parse(localStorage.getItem('user')).accessToken,
+            }
+        })
+        dispatch(updateListSuccess(res.data))
+        // console.log(res.data);
+    } catch (error) {
+        dispatch(updateListFailure());
+    }
 }

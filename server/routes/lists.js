@@ -58,31 +58,18 @@ router.delete("/:id", verifyToken, async (req, res) => {
   }
 });
 
-module.exports = router;
+//UPDATE LIST
+router.put("/:id", async (req,res) =>{
+  try {
+      const updateList = await List.findByIdAndUpdate(
+          req.params.id,
+          {$set: req.body},
+          {new: true}
+      )
+      res.status(200).json(updateList)
+  } catch (error) {
+      res.status(500).json(error);
+  }
+})
 
-//OLD CODE 
-// router.get("/", verifyToken, async (req, res) => {
-//   const typeQuery = req.query.type;
-//   const genreQuery = req.query.genre;
-//   let list = [];
-//   try {
-//     if (typeQuery) {        //if type is selected
-//       if (genreQuery) {     //if genre is selected
-//         list = await List.aggregate([
-//           { $sample: { size: 10 } },
-//           { $match: { type: typeQuery, genre: genreQuery } },   //return 10 random movies/series of that genre
-//         ]);
-//       } else {
-//         list = await List.aggregate([
-//           { $sample: { size: 10 } },
-//           { $match: { type: typeQuery } },  //return 10 random movies/series of any genre
-//         ]);
-//       }
-//     } else {
-//       list = await List.aggregate([{ $sample: { size: 10 } }]); //return random sample of 10 movies/series
-//     }
-//     res.status(200).json(list); //return list data
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+module.exports = router;
