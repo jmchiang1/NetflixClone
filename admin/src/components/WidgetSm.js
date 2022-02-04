@@ -24,7 +24,7 @@ export default function WidgetSm() {
   
   return (
     <div className="widgetSm">
-      <span className="widgetSmTitle">New Join Members</span>
+      <span className="widgetSmTitle">Latest Added Members</span>
       <ul className="widgetSmList">
         {newUsers.map((user, i) => ( //map new users 
           <li className="widgetSmListItem" key={i}>

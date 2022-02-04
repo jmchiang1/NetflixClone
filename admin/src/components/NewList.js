@@ -27,7 +27,6 @@ export default function NewList() {
     setList({ ...list, [e.target.name]: value });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     createList(list, dispatch);
@@ -83,10 +82,12 @@ export default function NewList() {
             </select>
           </div>
         </div>
-        <button className="addProductButton" onClick={handleSubmit}>
-          Create
-        </button>
       </form>
+        <div className="buttonContainer">
+          <button className="addProductButton" onClick={handleSubmit}>
+            Create
+          </button>
+        </div>
     </div>
   );
 }

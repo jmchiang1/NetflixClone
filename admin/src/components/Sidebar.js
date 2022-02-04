@@ -1,16 +1,9 @@
 import "./Styles/Sidebar.css";
 import {
   LineStyle,
-  Timeline,
-  TrendingUp,
   PermIdentity,
   PlayCircleOutline,
   List,
-  MailOutline,
-  DynamicFeed,
-  ChatBubbleOutline,
-  WorkOutline,
-  Report,
   AddToQueue,
   QueuePlayNext,
 } from "@material-ui/icons";
@@ -70,6 +63,12 @@ function Sidebar() {
               <li className="sidebarListItem">
                 <QueuePlayNext className="sidebarIcon" />
                 Add List
+              </li>
+            </Link>
+            <Link to="/newUser" className="link">
+              <li className="sidebarListItem">
+                <QueuePlayNext className="sidebarIcon" />
+                Add User
               </li>
             </Link>
           </ul>
