@@ -15,7 +15,7 @@ export default function ListList() {
 
   const handleDelete = (id) => {
     deleteList(id, dispatch);
-    alert("Delete list successful !")
+    alert("Delete list successful !");
   };
 
   const columns = [
@@ -47,6 +47,11 @@ export default function ListList() {
 
   return (
     <div className="productList">
+      <div className="newproduct">
+        <Link to="/newList">
+          <button className="productAddButton">Create</button>
+        </Link>
+      </div>
       <DataGrid
         rows={lists}
         disableSelectionOnClick

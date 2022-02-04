@@ -15,7 +15,7 @@ export default function MovieList() {
 
   const handleDelete = (id) => {
     deleteMovie(id, dispatch);
-    alert("Delete successfully !")
+    alert("Delete successfully !");
   };
 
   const columns = [
@@ -62,6 +62,11 @@ export default function MovieList() {
 
   return (
     <div className="productList">
+      <div className="newproduct">
+        <Link to="/newMovie">
+          <button className="userAddButton">Create</button>
+        </Link>
+      </div>
       <DataGrid
         rows={movies}
         disableSelectionOnClick
