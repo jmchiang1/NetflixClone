@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
 import "./Styles/NewMovie.css";
+import { useContext, useState } from "react";
 import { createMovie } from "../context/movieContext/apiCalls";
 import { MovieContext } from "../context/movieContext/MovieContext";
 import { useHistory } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 
 export default function NewMovie() {
   const { dispatch } = useContext(MovieContext);
+  let history = useHistory();
 
   const [movie, setMovie] = useState({
     title: "",
@@ -26,10 +27,8 @@ export default function NewMovie() {
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
   };
-
   console.log("movie", movie);
 
-  let history = useHistory();
 
   const handleSubmit = (e) => {
     try {

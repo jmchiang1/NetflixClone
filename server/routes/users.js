@@ -34,7 +34,6 @@ router.delete("/:id", verify, async (req, res) => {
 });
 
 //GET
-
 router.get("/find/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -83,5 +82,15 @@ router.get("/stats", async (req, res) => {
   }
 });
 
+//CREATE
+router.post('/', async (req, res) =>{
+  const newUser = new User(req.body);
+  try {
+     const saveUser =  await newUser.save();
+     res.status(200).json(saveUser);
+  } catch (error) {
+      res.status(409).json({message: error.message});
+  }
+})
+
 module.exports = router;
-1;
