@@ -1,120 +1,146 @@
-import {
-    CalendarToday,
-    LocationSearching,
-    MailOutline,
-    PermIdentity,
-    PhoneAndroid,
-    Publish,
-  } from "@material-ui/icons";
-  import "./Styles/User.css";
-  
-  export default function User() {
-    return (
-      <div className="user">
-        <div className="userTitleContainer">
-          <h1 className="userTitle">Edit User</h1>
+import { CalendarToday, MailOutline, PermIdentity } from "@material-ui/icons";
+import { useParams, useHistory } from "react-router-dom";
+import "./Styles/User.css";
+import { UserContext } from "../context/userContext/UserContext";
+import { updateUser } from "../context/userContext/apiCalls";
+import { useContext, useState, useEffect } from "react";
+import axios from "axios";
+
+export default function User() {
+  const [user, setUser] = useState([]);
+  const params = useParams();
+  const history = useHistory();
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await axios.get("/users/find/" + params.userId, {
+          headers: {
+            token:
+              "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+          },
+        });
+        setUser(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUser();
+  }, [params]);
+
+  const { dispatch } = useContext(UserContext);
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setUser({ ...user, [e.target.name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateUser(user._id, dispatch, user);
+    alert(`Edited ${user.username} successfully`);
+    history.push("/users")
+  };
+
+  return (
+    <div className="user">
+      <div className="userTitleContainer">
+        <h1 className="userTitle">Edit User</h1>
+      </div>
+      <div className="userContainer">
+        <div className="userShow">
+          <div className="userShowTop">
+            <img
+              src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/bf6e4a33850498.56ba69ac3064f.png"
+              alt=""
+              className="userShowImg"
+            />
+            <div className="userShowTopTitle">
+              <span className="userShowUsername">{user.username}</span>
+              <span className="userShowUserTitle">{user._id}r</span>
+            </div>
+          </div>
+          <div className="userShowBottom">
+            <span className="userShowTitle">Account Details</span>
+            <div className="userShowInfo">
+              <PermIdentity className="userShowIcon" />
+              <span className="userShowInfoTitle">{user.username}</span>
+            </div>
+            <div className="userShowInfo">
+              <CalendarToday className="userShowIcon" />
+              <span className="userShowInfoTitle">
+                {new Date(user.createdAt).toLocaleDateString("en-US")}
+              </span>
+            </div>
+            <div className="userShowInfo">
+              <MailOutline className="userShowIcon" />
+              <span className="userShowInfoTitle">{user.email}</span>
+            </div>
+          </div>
         </div>
-        <div className="userContainer">
-          <div className="userShow">
-            <div className="userShowTop">
-              <img
-                src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt=""
-                className="userShowImg"
-              />
-              <div className="userShowTopTitle">
-                <span className="userShowUsername">Anna Becker</span>
-                <span className="userShowUserTitle">Software Engineer</span>
+        <div className="userUpdate">
+          <span className="userUpdateTitle">Edit</span>
+          <form className="userUpdateForm">
+            <div className="userUpdateLeft">
+              <div className="userUpdateItem">
+                <label>Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  value={user.username}
+                  className="userUpdateInput"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="userUpdateItem">
+                <label>Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  value={user.email}
+                  className="userUpdateInput"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="userUpdateItem">
+                <label>Admin</label>
+                <select
+                  name="isAdmin"
+                  id="isAdmin"
+                  value={user.isAdmin}
+                  className="userUpdateInput"
+                  onChange={handleChange}
+                >
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+                {/* <input
+                  type="text"
+                  name="isAdmin"
+                  value={user.isAdmin}
+                  className="userUpdateInput"
+                  onChange = {handleChange}
+                /> */}
               </div>
             </div>
-            <div className="userShowBottom">
-              <span className="userShowTitle">Account Details</span>
-              <div className="userShowInfo">
-                <PermIdentity className="userShowIcon" />
-                <span className="userShowInfoTitle">annabeck99</span>
+            <div className="userUpdateRight">
+              <div className="userUpdateUpload">
+                <img
+                  className="userUpdateImg"
+                  src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/bf6e4a33850498.56ba69ac3064f.png"
+                  alt=""
+                />
+                <label htmlFor="file">
+                  {/* <Publish className="userUpdateIcon" /> */}
+                </label>
+                <input type="file" id="file" style={{ display: "none" }} />
               </div>
-              <div className="userShowInfo">
-                <CalendarToday className="userShowIcon" />
-                <span className="userShowInfoTitle">10.12.1999</span>
-              </div>
-              <span className="userShowTitle">Contact Details</span>
-              <div className="userShowInfo">
-                <PhoneAndroid className="userShowIcon" />
-                <span className="userShowInfoTitle">+1 123 456 67</span>
-              </div>
-              <div className="userShowInfo">
-                <MailOutline className="userShowIcon" />
-                <span className="userShowInfoTitle">annabeck99@gmail.com</span>
-              </div>
-              <div className="userShowInfo">
-                <LocationSearching className="userShowIcon" />
-                <span className="userShowInfoTitle">New York | USA</span>
-              </div>
+              <button onClick={handleSubmit} className="userUpdateButton">
+                Update
+              </button>
             </div>
-          </div>
-          <div className="userUpdate">
-            <span className="userUpdateTitle">Edit</span>
-            <form className="userUpdateForm">
-              <div className="userUpdateLeft">
-                <div className="userUpdateItem">
-                  <label>Username</label>
-                  <input
-                    type="text"
-                    placeholder="annabeck99"
-                    className="userUpdateInput"
-                  />
-                </div>
-                <div className="userUpdateItem">
-                  <label>Full Name</label>
-                  <input
-                    type="text"
-                    placeholder="Anna Becker"
-                    className="userUpdateInput"
-                  />
-                </div>
-                <div className="userUpdateItem">
-                  <label>Email</label>
-                  <input
-                    type="text"
-                    placeholder="annabeck99@gmail.com"
-                    className="userUpdateInput"
-                  />
-                </div>
-                <div className="userUpdateItem">
-                  <label>Phone</label>
-                  <input
-                    type="text"
-                    placeholder="+1 123 456 67"
-                    className="userUpdateInput"
-                  />
-                </div>
-                <div className="userUpdateItem">
-                  <label>Address</label>
-                  <input
-                    type="text"
-                    placeholder="New York | USA"
-                    className="userUpdateInput"
-                  />
-                </div>
-              </div>
-              <div className="userUpdateRight">
-                <div className="userUpdateUpload">
-                  <img
-                    className="userUpdateImg"
-                    src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                    alt=""
-                  />
-                  <label htmlFor="file">
-                    <Publish className="userUpdateIcon" />
-                  </label>
-                  <input type="file" id="file" style={{ display: "none" }} />
-                </div>
-                <button className="userUpdateButton">Update</button>
-              </div>
-            </form>
-          </div>
+          </form>
         </div>
       </div>
-    );
-  }
-  
+    </div>
+  );
+}

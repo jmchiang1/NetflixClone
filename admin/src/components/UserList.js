@@ -4,7 +4,7 @@ import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../context/userContext/UserContext";
-import {deleteUser, getUsers } from "../context/userContext/apiCalls";
+import { deleteUser, getUsers } from "../context/userContext/apiCalls";
 
 export default function UserList() {
   const { users, dispatch } = useContext(UserContext);
@@ -12,7 +12,6 @@ export default function UserList() {
   useEffect(() => {
     getUsers(dispatch);
   }, [dispatch]);
-
 
   const handleDelete = (id) => {
     deleteUser(id, dispatch);
@@ -63,6 +62,11 @@ export default function UserList() {
 
   return (
     <div className="userList">
+      <div className="newproduct">
+        <Link to="/newUser">
+          <button className="userAddButton">Create</button>
+        </Link>
+      </div>
       <DataGrid
         id={Math.random()}
         rows={users}
