@@ -4,51 +4,15 @@ import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../context/userContext/UserContext";
-import {
-  deleteUser,
-  getUsers,
-  updateStatus,
-} from "../context/userContext/apiCalls";
-import axios from "axios";
+import {deleteUser, getUsers } from "../context/userContext/apiCalls";
 
 export default function UserList() {
   const { users, dispatch } = useContext(UserContext);
-  // const { transactions, dispatchTrans } = useContext(TransContext);
-
-  // useEffect(() => {
-  //   getTransactions(dispatchTrans);
-  // }, [dispatchTrans]);
 
   useEffect(() => {
     getUsers(dispatch);
   }, [dispatch]);
 
-  console.log("getUsers", getUsers);
-  console.log("users", users);
-  console.log("dispatch", dispatch);
-  
-  // useEffect(() => {
-  //   users.forEach((user) => {
-  //     transactions.forEach((trans) => {
-  //       if (user._id === trans.userID) {
-  //         const getU = async () => {
-  //           try {
-  //             await axios.put("/users/" + user._id, {
-  //               headers: {
-  //                 token:
-  //                   "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-  //               },
-  //               status: "COMPLETED"
-  //             });
-  //           } catch (error) {
-  //             console.log(error);
-  //           }
-  //         }
-  //         getU();
-  //       }
-  //     })
-  //   })
-  // }, [users, transactions, dispatch])
 
   const handleDelete = (id) => {
     deleteUser(id, dispatch);
@@ -56,7 +20,7 @@ export default function UserList() {
   };
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 200 },
     {
       field: "user",
       headerName: "User",
@@ -66,8 +30,8 @@ export default function UserList() {
           <div className="userListUser">
             <img
               className="userListImg"
-              src={params.row.profilePic}
-              alt={params.row.username}
+              src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+              alt=""
             />
             {params.row.username}
           </div>
@@ -75,8 +39,6 @@ export default function UserList() {
       },
     },
     { field: "email", headerName: "Email", width: 200 },
-    { field: "status", headerName: "Status", width: 120 },
-    { field: "transaction", headerName: "Transaction Volume", width: 160 },
     {
       field: "action",
       headerName: "Action",
@@ -89,12 +51,10 @@ export default function UserList() {
             >
               <button className="userListEdit">Edit</button>
             </Link>
-            <button
+            <DeleteOutline
               className="userListDelete"
               onClick={() => handleDelete(params.row._id)}
-            >
-              Delete
-            </button>
+            />
           </>
         );
       },
@@ -108,7 +68,7 @@ export default function UserList() {
         rows={users}
         disableSelectionOnClick
         columns={columns}
-        pageSize={8}
+        pageSize={10}
         checkboxSelection
         getRowId={(row) => row._id}
       />
