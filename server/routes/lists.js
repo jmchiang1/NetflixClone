@@ -29,20 +29,31 @@ router.get("/", verifyToken, async (req, res) => {
   }
 });
 
-//CREATE LIST for homepage - works with postman
-router.post("/", verifyToken, async (req, res) => {
-  if (req.user.isAdmin === true) {
-    const newList = new List(req.body);
-    try {
-      const savedList = await newList.save();
-      res.status(201).json(savedList);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  } else {
-    res.status(403).json("Admins Only!");
+//CREATE LIST for Admin Page
+router.post('/', async (req, res) =>{
+  const newList = new List(req.body);
+  try {
+     const saveList =  await newList.save();
+     res.status(200).json(saveList);
+  } catch (error) {
+      res.status(409).json({message: error.message});
   }
-});
+})
+
+//OLD CREATE POST CODE 
+// router.post("/", verifyToken, async (req, res) => {
+//   if (req.user.isAdmin === true) {
+//     const newList = new List(req.body);
+//     try {
+//       const savedList = await newList.save();
+//       res.status(201).json(savedList);
+//     } catch (err) {
+//       res.status(500).json(err);
+//     }
+//   } else {
+//     res.status(403).json("Admins Only!");
+//   }
+// });
 
 //DELETE LIST - works
 router.delete("/:id", verifyToken, async (req, res) => {

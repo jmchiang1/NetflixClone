@@ -12,6 +12,7 @@ import NewMovie from "./components/NewMovie";
 import Login from "./components/Login";
 import ListList from "./components/ListList";
 import List from "./components/List";
+import NewList from "./components/NewList";
 import { AuthContext } from "./context/authContext/AuthContext";
 import { useContext } from "react";
 
@@ -53,9 +54,9 @@ function App() {
               <Route path="/list/:listId">
                 <List />
               </Route>
-              {/* <Route path="/newlist">
+              <Route path="/newlist">
                 <NewList />
-              </Route> */}
+              </Route>
             </div>
           </>
         )}
