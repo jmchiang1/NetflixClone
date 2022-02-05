@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { AuthContext } from './authContext/AuthContext'
 
 function App() {
+  
   const { user } = useContext(AuthContext)
   return ( 
     <BrowserRouter>

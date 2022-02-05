@@ -1,16 +1,15 @@
 import React from "react";
 import "./Styles/Navbar.scss";
-import SearchIcon from "@mui/icons-material/Search";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../authContext/AuthContext";
+import { logout } from "../authContext/AuthActions";
 
 function Navbar() {
-  // const [scrolled, setScrolled] = useState(false);
-  // window.onscroll = () => {
-  //     setScrolled(window.pageYOffset === 0 ? false : true);
-  //     return () => window.onscroll = null;
-  // }
+  const { user } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
 
   return (
     <div className="navbar">
@@ -21,7 +20,6 @@ function Navbar() {
             alt=""
           />
           <Link to="/" className="link">
-            {/* <span>Series</span> */}
             <span>Home</span>
           </Link>
           <Link to="/series" className="link">
@@ -30,23 +28,25 @@ function Navbar() {
           <Link to="/movies" className="link">
             <span>Movies</span>
           </Link>
-          <span>New and Popular</span>
+          {/* <span>New and Popular</span> */}
           <span>My List</span>
         </div>
 
         <div className="right">
-          <SearchIcon />
-          <span>KID</span>
-          <NotificationsIcon className="icon" />
+          <button style={{marginRight: '1rem'}}>
+            <a target="_blank" href="http://localhost:4000/">
+              <SupervisorAccountIcon style={{color:'teal'}} />
+            </a>
+          </button>
+          <span style={{marginRight: '1rem', fontWeight:'bold'}}>{user.username.toUpperCase()}</span>
           <img
-            src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-            alt=""
+            src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+            alt="nothing to see here"
           />
           <div className="profile">
             <ArrowDropDownIcon className="icon" />
             <div className="options">
-              <span>Settings</span>
-              <span>Logout</span>
+              <span onClick={() => dispatch(logout())}>Logout</span>
             </div>
           </div>
         </div>
