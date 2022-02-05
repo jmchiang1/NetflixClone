@@ -1,35 +1,34 @@
-import React, { useState, useEffect } from "react";
+import { InfoOutlined, PlayArrow } from "@material-ui/icons";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import "./Styles/Featured.scss";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import axios from 'axios'
 
-function Featured({ type, setGenre }) {
-  const [content, setContent] = useState({})
+export default function Featured({ type, setGenre }) {
+  const [content, setContent] = useState({});
 
   useEffect(() => {
     const getRandomContent = async () => {
       try {
-        const res = await axios.get(`/movies/find/random?type=${type}`, 
-        {
+        const res = await axios.get(`/movies/random?type=${type}`, {
           headers: {
             token:
-            "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+              "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
           },
-        })
-        setContent(res.data[0])
+        });
+        setContent(res.data[0]);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
-    getRandomContent()
-  }, [type])
+    };
+    getRandomContent();
+  }, [type]);
 
+  console.log(content);
   return (
     <div className="featured">
       {type && (
         <div className="category">
-          <span>{type === "movies" ? "Movies" : "Series "}</span>
+          <span>{type === "movies" ? "Movies" : "Series"}</span>
           <select
             name="genre"
             id="genre"
@@ -54,21 +53,19 @@ function Featured({ type, setGenre }) {
       )}
       <img src={content.img} alt="" />
       <div className="info">
-      <img src={content.imgTitle} alt="" />
-        <span className="description">{content.description} </span>
+        <img src={content.imgTitle} alt="" />
+        <span className="description">{content.description}</span>
         <div className="buttons">
           <button className="play">
-            <PlayArrowIcon />
+            <PlayArrow />
             <span>Play</span>
           </button>
           <button className="more">
-            <InfoOutlinedIcon />
-            <span>Information</span>
+            <InfoOutlined />
+            <span>Info</span>
           </button>
         </div>
       </div>
     </div>
   );
 }
-
-export default Featured;
