@@ -5,10 +5,12 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Feature from "./components/Featured";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from './authContext/AuthContext'
 
 function App() {
-  const user = true;
-  return (
+  const { user } = useContext(AuthContext)
+  return ( 
     <BrowserRouter>
       <Routes>
         <Route

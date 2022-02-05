@@ -1,26 +1,29 @@
-import React, { useState, useEffect } from "react";
 import "./Styles/ListItem.scss";
-import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import ReactPlayer from "react-player";
+import {
+  PlayArrow,
+  Add,
+  ThumbUpAltOutlined,
+  ThumbDownOutlined,
+  FiberManualRecord,
+  KeyboardArrowDown,
+  CheckOutlined,
+} from "@material-ui/icons";
+import { useState, useEffect, useContext } from "react";
+import ReactPlayer from "react-player/lazy";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function ListItem({ index, item }) {
+export default function ListItem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
   const [movie, setMovie] = useState({});
-
-  console.log(item); //returns movie id
 
   useEffect(() => {
     const getMovie = async () => {
       try {
-        const res = await axios.get(`movies/find/${item}`, {
+        const res = await axios.get("/movies/find/" + item, {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjIxMjYwNmIxMjU1NjI3MjgyMmY1NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MzU5MzkwOSwiZXhwIjoxNjQzNjgwMzA5fQ.pzWhzu0MS_zoP-3ly0CozsXO0RA7Wgb_ytDaoTpWcSY",
+            "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
           },
         });
         setMovie(res.data);
@@ -32,42 +35,35 @@ function ListItem({ index, item }) {
   }, [item]);
 
   return (
-    <Link to={{pathname:"/watch", movie: movie}}>
+    <Link to={{ pathname: "/watch/" + movie?._id, movie: movie }}>
       <div
         className="listItem"
-        style={{ left: isHovered && index * 225 - 50 + index * 2.5 }} //center the hovered image
+        style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {isHovered ? (
-          <ReactPlayer
-            url={movie.trailer}
-            playing={true}
-            width="100%"
-            height="140px"
-            muted={true}
-          />
-        ) : (
-          <img src={movie.img} alt="" />
+        <img src={movie?.imgSmall} alt="" />
+        {isHovered && (
+          <>
+            <video src={movie.trailer} autoPlay={true} loop />
+            <div className="itemInfo">
+              <div className="icons">
+                <PlayArrow className="icon" />
+                <Add className="icon" />
+                <ThumbUpAltOutlined className="icon" />
+                <ThumbDownOutlined className="icon" />
+              </div>
+              <div className="itemInfoTop">
+                <span>{movie.duration}</span>
+                <span className="limit">+{movie.limit}</span>
+                <span>{movie.year}</span>
+              </div>
+              <div className="desc">{movie.description}</div>
+              <div className="genre">{movie.genre}</div>
+            </div>
+          </>
         )}
-        <div className="itemInfo">
-          <div className="icons">
-            <PlayArrowOutlinedIcon className="icon" />
-            <AddOutlinedIcon className="icon" />
-            <ThumbUpIcon className="icon" />
-            <ThumbDownIcon className="icon" />
-          </div>
-          <div className="itemInfoTop">
-            <span>{movie.duration}</span>
-            <span className="limit">{movie.limit}</span>
-            <span>{movie.year}</span>
-          </div>
-          <div className="desc"> {movie.description} </div>
-          <div className="genre">{movie.genre}</div>
-        </div>
       </div>
     </Link>
   );
 }
-
-export default ListItem;

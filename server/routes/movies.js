@@ -49,8 +49,8 @@ router.get("/random", verifyToken, async (req, res) => {
 });
 
 //CREATE MOVIE - works with postman
-router.post("/", verifyToken, async (req, res) => {
-  if (req.user.isAdmin === true) {
+router.post("/", async (req, res) => {
+  // if (req.user.isAdmin === true) {
     const newMovie = new Movie(req.body);
     try {
       const saveMovie = await newMovie.save();
@@ -58,9 +58,9 @@ router.post("/", verifyToken, async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
-  } else {
-    res.status(403).json({ message: "Admins only!" });
-  }
+  // } else {
+  //   res.status(403).json({ message: "Admins only!" });
+  // }
 });
 
 //UPDATE EXISTING MOVIE

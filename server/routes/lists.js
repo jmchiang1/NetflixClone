@@ -40,33 +40,14 @@ router.post('/', async (req, res) =>{
   }
 })
 
-//OLD CREATE POST CODE 
-// router.post("/", verifyToken, async (req, res) => {
-//   if (req.user.isAdmin === true) {
-//     const newList = new List(req.body);
-//     try {
-//       const savedList = await newList.save();
-//       res.status(201).json(savedList);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   } else {
-//     res.status(403).json("Admins Only!");
-//   }
-// });
-
 //DELETE LIST - works
-router.delete("/:id", verifyToken, async (req, res) => {
-  if (req.user.isAdmin === true) {
+router.delete("/:id", async (req, res) => {
     try {
       await List.findByIdAndDelete(req.params.id);
       res.status(201).json("The list has been deleted");
     } catch (err) {
       res.status(500).json(err);
     }
-  } else {
-    res.status(403).json("You are not allowed!");
-  }
 });
 
 //UPDATE LIST
@@ -84,3 +65,18 @@ router.put("/:id", async (req,res) =>{
 })
 
 module.exports = router;
+
+//OLD CREATE POST CODE 
+// router.post("/", verifyToken, async (req, res) => {
+//   if (req.user.isAdmin === true) {
+//     const newList = new List(req.body);
+//     try {
+//       const savedList = await newList.save();
+//       res.status(201).json(savedList);
+//     } catch (err) {
+//       res.status(500).json(err);
+//     }
+//   } else {
+//     res.status(403).json("Admins Only!");
+//   }
+// });

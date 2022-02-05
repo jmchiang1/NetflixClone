@@ -47,23 +47,6 @@ export default function NewMovie() {
       <h1 className="addProductTitle">New Movie</h1>
       <form className="addProductForm">
         <div className="addProductItem">
-          <label>Image</label>
-          <input type="text" id="img" name="img" onChange={handleChange} />
-        </div>
-        <div className="addProductItem">
-          <label>Title image</label>
-          <input
-            type="text"
-            id="imgTitle"
-            name="imgTitle"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="addProductItem">
-          <label>Thumbnail image</label>
-          <input type="text" id="imgSm" name="imgSm" onChange={handleChange} />
-        </div>
-        <div className="addProductItem">
           <label>Title</label>
           <input
             type="text"
@@ -76,8 +59,8 @@ export default function NewMovie() {
           <label>Description</label>
           <input
             type="text"
-            placeholder="description"
-            name="desc"
+            placeholder="Description"
+            name="description"
             onChange={handleChange}
           />
         </div>
@@ -116,6 +99,23 @@ export default function NewMovie() {
             name="limit"
             onChange={handleChange}
           />
+        </div>
+        <div className="addProductItem">
+          <label>Image</label>
+          <input type="text" id="img" name="img" onChange={handleChange} />
+        </div>
+        <div className="addProductItem">
+          <label>Title image</label>
+          <input
+            type="text"
+            id="imgTitle"
+            name="imgTitle"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="addProductItem">
+          <label>Thumbnail image</label>
+          <input type="text" id="imgSmall" name="imgSmall" onChange={handleChange} />
         </div>
         <div className="addProductItem">
           <label>Is Series?</label>

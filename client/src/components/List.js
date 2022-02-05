@@ -41,7 +41,7 @@ export default function List({ list }) {
         {/* continer needs to have reference to distance */}
         <div className="container" ref={listRef}>
           {list.content.map((item, i) => (
-            <ListItem index={i} item={item} />
+            <ListItem key={i} index={i} item={item} />
           ))}
         </div>
 

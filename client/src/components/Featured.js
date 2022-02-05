@@ -4,7 +4,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import axios from 'axios'
 
-function Featured({ type }) {
+function Featured({ type, setGenre }) {
   const [content, setContent] = useState({})
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function Featured({ type }) {
         {
           headers: {
             token:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjIxMjYwNmIxMjU1NjI3MjgyMmY1NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MzU5MzkwOSwiZXhwIjoxNjQzNjgwMzA5fQ.pzWhzu0MS_zoP-3ly0CozsXO0RA7Wgb_ytDaoTpWcSY",
+            "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
         })
         setContent(res.data[0])
@@ -33,7 +33,7 @@ function Featured({ type }) {
           <select
             name="genre"
             id="genre"
-            // onChange={(e) => setGenre(e.target.value)}
+            onChange={(e) => setGenre(e.target.value)}
           >
             <option>Genre</option>
             <option value="adventure">Adventure</option>
