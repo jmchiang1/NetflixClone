@@ -1,5 +1,5 @@
 .featured {
-  height: 76vh;
+  height: 65vh;
   position: relative;
 
   .category {
@@ -45,6 +45,7 @@
       width: 40vw;
       height: 20vh;
       margin: 2rem 0rem 2rem 0rem;
+      object-fit: contain;
     }
 
     .description {

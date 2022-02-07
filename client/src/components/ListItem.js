@@ -48,16 +48,6 @@ const Listitem = ({ index, item }) => {
                 height="60%"
                 muted={true}
               />
-              {/* <div className="itemInfo">
-                <div className="icons"></div>
-                <div className="itemInfoTop">
-                  <span>{movie.duration}</span>
-                  <span className="limit">{movie.limit}+</span>
-                  <span>{movie.year}</span>
-                </div>
-                <div className="desc">{movie.description}</div>
-                <div className="genre">{movie.genre}</div>
-              </div> */}
             </>
           ) : (
             <>

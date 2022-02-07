@@ -29,7 +29,7 @@ function App() {
         />
         {user && ( //if user logged in, able to see these pages
           <>
-            <Route path="/movies" element={<Home type="movies" />} />
+            <Route path="/movies" element={<Home type="movie" />} />
             <Route path="/series" element={<Home type="series" />} />
             <Route path="/watch/:watchID" element={<Watch />} />
           </>

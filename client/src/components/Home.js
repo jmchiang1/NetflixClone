@@ -2,6 +2,7 @@ import "./Styles/Home.scss";
 import Navbar from "./Navbar";
 import Featured from "./Featured";
 import List from "./List";
+import Footer from "./Footer";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -34,7 +35,7 @@ const Home = ({ type }) => {
           {lists.map((list) => (
               <List list={list} key={list._id} />
           ))}
-          {/* <Footer /> */}
+          <Footer />
       </div>
   )
 }

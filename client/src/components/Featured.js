@@ -10,7 +10,7 @@ export default function Featured({ type, setGenre }) {
   useEffect(() => {
     const getRandomContent = async () => {
       try {
-        const res = await axios.get(`/movies/random?type=${type}`, {
+        const res = await axios.get(`/movies/random?type=${type}`, {  //feature homepage defaults to random "Movie" only
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -25,42 +25,38 @@ export default function Featured({ type, setGenre }) {
   }, [type]);
 
   console.log("CONTENT",content);
-  
+
   return (
     <div className="featured">
       {type && (
         <div className="category">
-          <span>{type === "movies" ? "Movies" : "Series"}</span>
+          {/* if selected type is "movies", display "Movies", etc */}
+          <span>{type === "movies" ? "Movies" : "Series" }</span>
           <select
             name="genre"
             id="genre"
-            onChange={(e) => setGenre(e.target.value)}
-          >
+            onChange={(e) => setGenre(e.target.value)}  //grab the value of the selected genre 
+          > 
+          {/* value of selected genre must match exactly with list genre in DB! */}
             <option>Genre</option>
+            <option value="action">Action</option>
             <option value="adventure">Adventure</option>
-            <option value="comedy">Comedy</option>
-            <option value="crime">Crime</option>
+            <option value="animation">Animation</option>
             <option value="fantasy">Fantasy</option>
-            <option value="historical">Historical</option>
             <option value="horror">Horror</option>
             <option value="romance">Romance</option>
-            <option value="sci-fi">Sci-fi</option>
-            <option value="thriller">Thriller</option>
-            <option value="western">Western</option>
-            <option value="animation">Animation</option>
             <option value="drama">Drama</option>
-            <option value="documentary">Documentary</option>
           </select>
         </div>
       )}
-      <img src={content.img} alt="" />
+      <img src={content.img} alt="nothing to see here" />
       <div className="info">
-        <img src={content.imgTitle} alt="" />
+        <img src={content.imgTitle} alt="nothing to see here" />
         <span className="description">{content.description}</span>
         <div className="buttons">
           <button className="play">
+            <Link style={{ textDecoration:'none',color: 'black', display:'contents' }} to={{ pathname: "/watch/" + content._id }}>
             <PlayArrow />
-            <Link style={{ textDecoration:'none',color: 'black' }} to={{ pathname: "/watch/" + content._id }}>
               <span>Play</span>
             </Link>
           </button>
