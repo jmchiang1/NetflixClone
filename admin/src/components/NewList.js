@@ -49,12 +49,20 @@ export default function NewList() {
           </div>
           <div className="addProductItem">
             <label>Genre</label>
-            <input
+            <select
               type="text"
               placeholder="action"
               name="genre"
               onChange={handleChange}
-            />
+            >
+              <option>Genre</option>
+              <option value="action">Action</option>
+              <option value="adventure">Adventure</option>
+              <option value="animation">Animation</option>
+              <option value="horror">Horror</option>
+              <option value="romance">Romance</option>
+              <option value="drama">Drama</option>
+            </select>
           </div>
           <div className="addProductItem">
             <label>Type</label>
@@ -83,11 +91,11 @@ export default function NewList() {
           </div>
         </div>
       </form>
-        <div className="buttonContainer">
-          <button className="addProductButton" onClick={handleSubmit}>
-            Create
-          </button>
-        </div>
+      <div className="buttonContainer">
+        <button className="addProductButton" onClick={handleSubmit}>
+          Create
+        </button>
+      </div>
     </div>
   );
 }

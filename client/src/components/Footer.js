@@ -16,7 +16,7 @@ function Footer() {
             </small>
             <Link
               className="social-icon-link twitter"
-              to="/"
+              to="https://github.com/jmchiang1/NetflixClone"
               target="_blank"
               aria-label="GitHub"
             >
@@ -26,7 +26,7 @@ function Footer() {
           <div className="social-icons">
             <Link
               className="social-icon-link twitter"
-              to="/"
+              to="https://www.facebook.com/jonamon.chiang/"
               target="_blank"
               aria-label="Facebook"
             >
@@ -34,7 +34,7 @@ function Footer() {
             </Link>
             <Link
               className="social-icon-link twitter"
-              to="/"
+              to="https://www.linkedin.com/in/jmchiang5/"
               target="_blank"
               aria-label="LinkedIn"
             >
@@ -42,7 +42,7 @@ function Footer() {
             </Link>
             <Link
               className="social-icon-link twitter"
-              to="/"
+              to="https://github.com/jmchiang1"
               target="_blank"
               aria-label="GitHub"
             >
@@ -50,7 +50,7 @@ function Footer() {
             </Link>
             <Link
               className="social-icon-link twitter"
-              to="/"
+              to="https://jonathanchiang.com/"
               target="_blank"
               aria-label="Web"
             >

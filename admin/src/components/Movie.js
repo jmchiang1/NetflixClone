@@ -12,6 +12,7 @@ export default function Movie() {
   const params = useParams(); //grabs movie id
 
   // console.log("DISPATCH", dispatch);
+  console.log("MOVIE", movie);
 
   useEffect(() => {
     const getMovie = async () => {
@@ -20,29 +21,29 @@ export default function Movie() {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-          }
+          },
         });
         setMovie(res.data);
       } catch (error) {
         console.log(error);
       }
-    }
+    };
     getMovie();
-  },[params])
+  }, [params]);
 
   const handleChange = (e) => {
     const value = e.target.value;
-    setMovie({...movie, [e.target.name]: value});
-  }
+    setMovie({ ...movie, [e.target.name]: value });
+  };
 
   let history = useHistory();
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     updateMovie(movie._id, dispatch, movie);
     alert("Edit successfully");
-    history.push("/movies")
-  }
+    history.push("/movies");
+  };
 
   return (
     <div className="product">
@@ -93,12 +94,21 @@ export default function Movie() {
               onChange={handleChange}
             />
             <label>Genre</label>
-            <input
+            <select
               type="text"
               name="genre"
               value={movie.genre}
               onChange={handleChange}
-            />
+            >
+              <option>Genre</option>
+              <option value="action">Action</option>
+              <option value="adventure">Adventure</option>
+              <option value="animation">Animation</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="horror">Horror</option>
+              <option value="romance">Romance</option>
+              <option value="drama">Drama</option>
+            </select>
             <label>Limit</label>
             <input
               type="text"
@@ -106,13 +116,30 @@ export default function Movie() {
               value={movie.limit}
               onChange={handleChange}
             />
-            <label>Image</label>
+            <label>Feature Image</label>
             <input
               type="text"
               name="img"
               value={movie.img}
               onChange={handleChange}
             />
+            <img src={movie.img} alt="" className="productUploadImg" />
+            <label>Title Image</label>
+            <input
+              type="text"
+              name="imgTitle"
+              value={movie.imgTitle}
+              onChange={handleChange}
+            />
+            <img src={movie.imgTitle} alt="" className="productUploadImg" />
+            <label>Thumbnail Image</label>
+            <input
+              type="text"
+              name="imgSmall"
+              value={movie.imgSmall}
+              onChange={handleChange}
+            />
+            <img src={movie.imgSmall} alt="" className="productUploadImg" />
             <label>Trailer</label>
             <input
               type="text"
@@ -128,40 +155,11 @@ export default function Movie() {
               onChange={handleChange}
             />
           </div>
-          <div className="productFormRight">
-            <div className="productUpload">
-              <img src={movie.img} alt="" className="productUploadImg" />
-              {/* <label htmlFor="text"> */}
-                {/* <Publish /> */}
-              {/* </label> */}
-              <input type="text" id="text" style={{ display: "none" }} />
-            </div>
-            <button className="productButton" onClick={handleSubmit}>
-              Update
-            </button>
-          </div>
         </form>
+      <button className="productButton" onClick={handleSubmit}>
+        Update
+      </button>
       </div>
     </div>
   );
 }
-
-//NOT USED CODE
-// const [movies, setMovie] = useState({
-//   title: "",
-//   description: "",
-//   img: "",
-//   imgTitle: "",
-//   imgSmall: "",
-//   trailer: "",
-//   video: "",
-//   year: "",
-//   limit: "",
-//   genre: "",
-//   isSeries: false,
-// });
-
-// const location = useLocation();
-// const movie = location.movie;
-// console.log("LOCATION",location)  //returns correct path name
-// console.log("MOVIE",movie)        //returns entire movie object

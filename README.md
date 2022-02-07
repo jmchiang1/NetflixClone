@@ -16,7 +16,7 @@ Full stack Netflix Clone with Admin Panel built using the following technologies
 - Browse movies by list in carousel format
 - Popup bubble upon hover showing movie description, year, age limit, and autoplay trailer
 - Watch page for specific movie trailers
-- All movies and movie lists created in the admin page are present on the client side
+- Sort home page by Movies or Series then by Genre
 
 ## Key Admin Features Include
 - Login/Logout with JWT authenication
@@ -27,6 +27,6 @@ Full stack Netflix Clone with Admin Panel built using the following technologies
 - See the latest 5 Added Users
 
 ## Future Features
-- Ability to view list of movies by user
 - Ability to add movies to a MyList page
 - Ability to downvote / update a movie and sort them in a MyList page
+- Sinlge Movie Page
