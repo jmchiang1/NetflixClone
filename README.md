@@ -20,6 +20,9 @@ Full-stack Netflix Clone with Admin Panel, built using the following technologie
 - Add movies to a MyList page
 - Single Movie Page
 
+![Alt text](/client/public/Screenshots/homepage.png?raw=true "Client Home Page")
+
+
 ## Key Admin Features Include
 - Login/Logout with JWT authenication
 - See list of all registered users 
