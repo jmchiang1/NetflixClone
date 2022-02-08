@@ -2,7 +2,7 @@ import React from "react";
 import "./Styles/Navbar.scss";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext/AuthContext";
 import { logout } from "../context/authContext/AuthActions";
@@ -10,6 +10,7 @@ import { logout } from "../context/authContext/AuthActions";
 function Navbar() {
   const { user } = useContext(AuthContext);
   const { dispatch } = useContext(AuthContext);
+  let navigate = useNavigate();
 
   return (
     <div className="navbar">
@@ -35,7 +36,7 @@ function Navbar() {
 
         <div className="right"> Admin Dashboard
           <button style={{marginRight: '1rem', marginLeft: '10px', borderRadius: '5px', border: '1px solid white'}}>
-            <a target="_blank" href="http://localhost:4000/">
+            <a target="_blank" rel="noreferrer" href="http://localhost:4000/">
               <SupervisorAccountIcon style={{color:'teal'}} />
             </a>
           </button>
@@ -47,7 +48,10 @@ function Navbar() {
           <div className="profile">
             <ArrowDropDownIcon className="icon" />
             <div className="options">
-              <span onClick={() => dispatch(logout())}>Logout</span>
+              <span onClick={() => dispatch(logout())
+              .then(() => {
+                navigate('/register') //redirect back to register page after logging out
+              })}>Logout</span>
             </div>
           </div>
         </div>
