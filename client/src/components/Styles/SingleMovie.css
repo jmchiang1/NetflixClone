@@ -36,7 +36,7 @@
     font-family: "Source Sans Pro", Arial, sans-serif;
     font-size: 1em;
     -webkit-font-smoothing: antialiased;
-    margin-top: 65px;
+    margin-top: 64px;
   }
   
   /* Cover */
@@ -46,12 +46,11 @@
     z-index: 1;
     width: 100%;
     height: 510px;
-    /* background-image: url("https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg"); */
     background-size: cover;
     background-position: right -200px top;
     background-position-x: right -200px;
     background-position-y: top;
-    top: -1px;
+    /* top: -1px; */
   }
   .cover::before {
     content: "";

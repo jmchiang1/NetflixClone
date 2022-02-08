@@ -28,8 +28,9 @@ function Navbar() {
           <Link to="/movies" className="link">
             <span>Movies</span>
           </Link>
-          {/* <span>New and Popular</span> */}
+          <Link to="/mylist" className="link">
           <span>My List</span>
+          </Link>
         </div>
 
         <div className="right"> Admin Dashboard

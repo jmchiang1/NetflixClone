@@ -1,13 +1,17 @@
 import "./Styles/ListItem.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ReactPlayer from "react-player/lazy";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { PlayArrow, MoreVert } from "@material-ui/icons";
+import { PlayArrow, MoreVert, CheckOutlined, Add } from "@material-ui/icons";
+import { FavoriteContext } from "../context/favouriteContext/FavoriteContext";
 
 const Listitem = ({ index, item }) => {
+  const { addMovieToWatchList, removeMovieFromWatchList } =
+    useContext(FavoriteContext); //grab removeWatchlist and watchlist from context
   const [isHovered, setIsHovered] = useState(false);
   const [movie, setMovie] = useState({});
+  const [check, setCheck] = useState(false);
 
   useEffect(() => {
     // setTimeout(() => {
@@ -58,26 +62,47 @@ const Listitem = ({ index, item }) => {
           )}
           <div className="itemInfo">
             <div className="icons">
-              <Link to={{ pathname: "/watch/" + movie?._id, movie: movie }}>
-                <PlayArrow className="icon play" style={{ color: "white" }} />
-              </Link>
-              <Link
-                to={{ pathname: "/info/" + movie._id, movie: movie }}
-                className="link"
-              >
-                <MoreVert
-                  style={{ color: "white" }}
-                  className="icon moreInfo"
-                />
-              </Link>
+              <div className="iconsLeft">
+                <Link to={{ pathname: "/watch/" + movie?._id, movie: movie }}>
+                  <PlayArrow className="icon play" style={{ color: "white" }} />
+                </Link>
+
+                {/* if icon is Checked, render checked icon, otherwise render Add */}
+                {check ? (
+                  <CheckOutlined
+                    className="icon"
+                    onClick={
+                      () => removeMovieFromWatchList(movie, setCheck(!check)) //remove item from watchlist
+                    }
+                  />
+                ) : (
+                  <Add
+                    className="icon add"
+                    onClick={() => addMovieToWatchList(movie, setCheck(!check))} //add item from watchlist
+                  />
+                )}
+              </div>
+
+              <div className="iconsRight">
+                <Link
+                  to={{ pathname: "/info/" + movie._id, movie: movie }}
+                  className="link"
+                >
+                  <MoreVert
+                    style={{ color: "white" }}
+                    className="icon moreInfo"
+                  />
+                </Link>
+              </div>
             </div>
             <div className="itemInfoTop">
-              {/* <span>{movie.duration}</span> */}
               <span className="limit">{movie.limit}+</span>
               <span>{movie.year}</span>
             </div>
+            <div style={{ marginBottom: "10px" }} className="genre">
+              Genre: {movie.genre}
+            </div>
             <div className="desc">{movie.description}</div>
-            <div className="genre">{movie.genre}</div>
           </div>
         </div>
       </div>
