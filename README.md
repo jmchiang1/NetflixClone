@@ -21,6 +21,8 @@ Full-stack Netflix Clone with Admin Panel, built using the following technologie
 - Single Movie Page
 
 ![Alt text](/client/public/Screenshots/homepage.png?raw=true "Client Home Page")
+![Alt text](/client/public/Screenshots/SingleMoviePage.png?raw=true "Client Single Movie Page")
+![Alt text](/client/public/Screenshots/myListPage.png?raw=true "Client MyList Page")
 
 
 ## Key Admin Features Include
@@ -30,6 +32,11 @@ Full-stack Netflix Clone with Admin Panel, built using the following technologie
 - See list of all movie lists
 - Create, Update, Delete all movies, users, and movie lists
 - See the latest 5 Added Users
+
+![Alt text](/client/public/Screenshots/adminHome.png?raw=true "Client Home Page")
+![Alt text](/client/public/Screenshots/AdminMovieList.png?raw=true "Client Single Movie Page")
+![Alt text](/client/public/Screenshots/createMovie.png?raw=true "Client MyList Page")
+![Alt text](/client/public/Screenshots/updateMovie.png?raw=true "Client MyList Page")
 
 ## Future Features
 - Ability to downvote / update a movie and sort them in a MyList page
