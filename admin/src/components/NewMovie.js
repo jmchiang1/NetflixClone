@@ -82,15 +82,6 @@ export default function NewMovie() {
             onChange={handleChange}
           />
         </div>
-        {/* <div className="addProductItem">
-          <label>Duration</label>
-          <input
-            type="text"
-            placeholder="Duration"
-            name="duration"
-            onChange={handleChange}
-          />
-        </div> */}
         <div className="addProductItem">
           <label>Limit</label>
           <input

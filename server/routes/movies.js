@@ -16,6 +16,7 @@ router.get("/", verifyToken, async (req, res) => {
   }
 });
 
+
 //GET SINGLE MOVIE - works with postman
 router.get("/find/:id", verifyToken, async (req, res) => {
   try {

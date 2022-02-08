@@ -9,6 +9,7 @@
   justify-content: center;
   box-shadow: 0px 0px 15px -10px rgb(0 0 0 / 75%);
   padding: 0.6%;
+  align-items: center;
 }
 
 .addProductItem {
@@ -20,7 +21,7 @@
 }
 
 .addProductItem > label {
-  color: gray;
+  color: white;
   font-weight: 600;
   margin-bottom: 10px;
   border-radius: 10px;
@@ -38,7 +39,8 @@
 }
 
 .addProductButton {
-  width: 200px;
+  width: 6rem;
+  height: 3rem;
   border: none;
   background-color: darkblue;
   color: white;

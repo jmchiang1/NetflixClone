@@ -75,7 +75,7 @@ export default function MovieList() {
         checkboxSelection
         getRowId={(r) => r._id}
         height="106%"
-        // rowsPerPageOptions={10}
+        sx={{color: 'white'}}
       />
     </div>
   );

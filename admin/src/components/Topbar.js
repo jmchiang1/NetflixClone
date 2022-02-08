@@ -18,7 +18,7 @@ function Topbar() {
           <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="" className="topAvatar" />
           <div className="options">
               <Link to="/login" style={{textDecoration: "none", padding: "6px"}}>
-                <span onClick={() => dispatch(logout())}>Logout</span>
+                <span style={{color: 'white', textDecoration:'none'}} onClick={() => dispatch(logout())}>Logout</span>
               </Link>
             </div>
         </div>

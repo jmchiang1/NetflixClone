@@ -75,6 +75,7 @@ export default function UserList() {
         pageSize={10}
         checkboxSelection
         getRowId={(row) => row._id}
+        sx={{color: 'white'}}
       />
     </div>
   );

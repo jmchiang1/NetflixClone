@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import "./Styles/Featured.scss";
 import { Link } from "react-router-dom";
 
+//pass in type from...not sure?
+//pass in setGenre from Home.js
 export default function Featured({ type, setGenre }) {
   const [content, setContent] = useState({});
 
@@ -11,7 +13,7 @@ export default function Featured({ type, setGenre }) {
     const getRandomContent = async () => {
       try {
         const res = await axios.get(`/movies/random?type=${type}`, {
-          //feature homepage defaults to random "Movie" only
+          //feature homepage defaults to a random Movie only, no series
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -31,7 +33,7 @@ export default function Featured({ type, setGenre }) {
     <div className="featured">
       {type && (
         <div className="category">
-          {/* if selected type is "movies", display "Movies", etc */}
+          {/* if selected type is "movies", display "Movies", otherwise display "Series" */}
           <span>{type === "movies" ? "Movies" : "Series"}</span>
           <select
             name="genre"
@@ -62,16 +64,20 @@ export default function Featured({ type, setGenre }) {
                 color: "black",
                 display: "contents",
               }}
-              to={{ pathname: "/watch/" + content._id }}
+              to={{ pathname: "/watch/" + content._id }} //link to the watch trailer page
             >
               <PlayArrow />
               <span>Play</span>
             </Link>
           </button>
-          <Link style={{textDecorationLine: 'none'}}  to={{ pathname: "/info/" + content._id }} className="link">
-            <button style={{textDecorationLine: 'none'}}  className="more">
-              <InfoOutlined style={{textDecorationLine: 'none'}} />
-              <span style={{textDecorationLine: 'none'}} >Info</span>
+          <Link //link to the single movie page 
+            style={{ textDecorationLine: "none" }}
+            to={{ pathname: "/info/" + content._id }}
+            className="link"
+          >
+            <button style={{ textDecorationLine: "none" }} className="more">
+              <InfoOutlined style={{ textDecorationLine: "none" }} />
+              <span style={{ textDecorationLine: "none" }}>Info</span>
             </button>
           </Link>
         </div>

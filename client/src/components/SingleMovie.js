@@ -13,6 +13,7 @@ const Info = () => {
   const { addMovieToWatchList, watchList } = useContext(FavoriteContext);
   const params = useParams();
 
+  //GET movie by id 
   useEffect(() => {
     const getMovie = async () => {
       try {
@@ -31,8 +32,8 @@ const Info = () => {
   }, [params.infoID]);
 
 
-  let storedMovie = watchList.find((item) => item._id === movie._id);
-  const watchListDisable = storedMovie ? true : false;
+  let storedMovie = watchList.find((item) => item._id === movie._id); //find movie in the watchlist
+  const watchListDisable = storedMovie ? true : false;  //if movie is in watchlist, watchListDisable is true, otherwise it's false
 
   return (
     <>
@@ -41,7 +42,7 @@ const Info = () => {
         <div
           className="cover"
           style={{
-            backgroundImage: `url(${movie.img})`,
+            backgroundImage: `url(${movie.img})`, //background image 
           }}
         >
           <div className="singleColumn">
@@ -69,14 +70,14 @@ const Info = () => {
                 <div className="action">
                   <div className="playFilm">
                     <Link
-                      to={{ pathname: "/watch/" + movie._id, movie: movie }}
+                      to={{ pathname: "/watch/" + movie._id, movie: movie }}  //links to watch trailer page 
                     >
                       <button className="info-btn btn-play">Play Trailer</button>
                     </Link>
                     <button
                       className="info-btn btn-myList"
-                      onClick={() => addMovieToWatchList(movie)}
-                      disabled={watchListDisable}
+                      onClick={() => addMovieToWatchList(movie)}  //adds movie to watchlist 
+                      disabled={watchListDisable} //disable the button according to "watchListDisable" boolean 
                     >
                       Add to My List
                     </button>
@@ -91,6 +92,7 @@ const Info = () => {
           </div>
         </div>
       </div>
+      {/* render trailer on the bottom  */}
       <div className="trailer">
         <ReactPlayer
           controls
@@ -102,7 +104,6 @@ const Info = () => {
           height="100%"
         />
       </div>
-      {/* <Comment movieID={movie._id} /> */}
       <Footer />
     </>
   );

@@ -59,6 +59,7 @@ export default function ListList() {
         pageSize={8}
         checkboxSelection
         getRowId={(r) => r._id}
+        sx={{color: 'white'}}
       />
     </div>
   );
