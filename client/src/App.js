@@ -4,9 +4,10 @@ import Watch from "./components/Watch";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Feature from "./components/Featured";
+import SingleMovie from "./components/SingleMovie";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from './authContext/AuthContext'
+import { AuthContext } from './context/authContext/AuthContext'
 
 function App() {
   
@@ -32,6 +33,7 @@ function App() {
             <Route path="/movies" element={<Home type="movie" />} />
             <Route path="/series" element={<Home type="series" />} />
             <Route path="/watch/:watchID" element={<Watch />} />
+            <Route path="/info/:infoID" element={<SingleMovie />} />
           </>
         )}
       </Routes>

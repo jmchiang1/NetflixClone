@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { AuthContextProvider } from "./context/authContext/AuthContext";
-import { FavContextProvider } from "./context/favContext/FavContext";
+import { FavouriteProvider } from './context/favouriteContext/FavoriteContext'
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <FavContextProvider>
+      <FavouriteProvider>
         <App />
-      </FavContextProvider>
+      </FavouriteProvider>
     </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById("root")

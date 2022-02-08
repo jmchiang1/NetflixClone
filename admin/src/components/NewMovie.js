@@ -82,7 +82,7 @@ export default function NewMovie() {
             onChange={handleChange}
           />
         </div>
-        <div className="addProductItem">
+        {/* <div className="addProductItem">
           <label>Duration</label>
           <input
             type="text"
@@ -90,7 +90,7 @@ export default function NewMovie() {
             name="duration"
             onChange={handleChange}
           />
-        </div>
+        </div> */}
         <div className="addProductItem">
           <label>Limit</label>
           <input

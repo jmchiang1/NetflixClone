@@ -4,8 +4,8 @@ import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../authContext/AuthContext";
-import { logout } from "../authContext/AuthActions";
+import { AuthContext } from "../context/authContext/AuthContext";
+import { logout } from "../context/authContext/AuthActions";
 
 function Navbar() {
   const { user } = useContext(AuthContext);
@@ -32,13 +32,13 @@ function Navbar() {
           <span>My List</span>
         </div>
 
-        <div className="right">
-          <button style={{marginRight: '1rem'}}>
+        <div className="right"> Admin Dashboard
+          <button style={{marginRight: '1rem', marginLeft: '10px', borderRadius: '5px', border: '1px solid white'}}>
             <a target="_blank" href="http://localhost:4000/">
               <SupervisorAccountIcon style={{color:'teal'}} />
             </a>
           </button>
-          <span style={{marginRight: '1rem', fontWeight:'bold'}}>{user.username.toUpperCase()}</span>
+          <span style={{marginRight: '1rem', fontWeight:'bold'}}>Welcome Back: {user.username.toUpperCase()}</span>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
             alt="nothing to see here"

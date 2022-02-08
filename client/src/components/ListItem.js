@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import ReactPlayer from "react-player/lazy";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { PlayArrow, MoreVert } from "@material-ui/icons";
+
 const Listitem = ({ index, item }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [movie, setMovie] = useState({});
@@ -27,8 +29,8 @@ const Listitem = ({ index, item }) => {
   }, [item]);
 
   return (
-    <Link to={{ pathname: "/watch/" + movie?._id, movie: movie }}>
-      {/* // <Link to={{ pathname: "/watch", movie: movie }}> */}
+    <>
+      {/* <Link to={{ pathname: "/watch/" + movie?._id, movie: movie }}> */}
       <div className="listItemContainer">
         <div
           className="listItem"
@@ -55,9 +57,22 @@ const Listitem = ({ index, item }) => {
             </>
           )}
           <div className="itemInfo">
-            <div className="icons"></div>
+            <div className="icons">
+              <Link to={{ pathname: "/watch/" + movie?._id, movie: movie }}>
+                <PlayArrow className="icon play" style={{ color: "white" }} />
+              </Link>
+              <Link
+                to={{ pathname: "/info/" + movie._id, movie: movie }}
+                className="link"
+              >
+                <MoreVert
+                  style={{ color: "white" }}
+                  className="icon moreInfo"
+                />
+              </Link>
+            </div>
             <div className="itemInfoTop">
-              <span>{movie.duration}</span>
+              {/* <span>{movie.duration}</span> */}
               <span className="limit">{movie.limit}+</span>
               <span>{movie.year}</span>
             </div>
@@ -66,7 +81,8 @@ const Listitem = ({ index, item }) => {
           </div>
         </div>
       </div>
-    </Link>
+      {/* </Link> */}
+    </>
   );
 };
 

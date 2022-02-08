@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useEffect } from "react";
-import FavReducer from "./FavReducer";
+import FavoriteReducer from "./FavoriteReducer";
 
 // initial state
 const INITIAL_STATE = {
@@ -9,11 +9,12 @@ const INITIAL_STATE = {
 }
 
 // create context
-export const FavContext= createContext(INITIAL_STATE);
+export const FavoriteContext= createContext(INITIAL_STATE);
 
 // provider components
-export const FavProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(FavReducer, INITIAL_STATE);
+
+export const FavouriteProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(FavoriteReducer, INITIAL_STATE);
 
     useEffect(() => {
         localStorage.setItem("watchList", JSON.stringify(state.watchList));
@@ -29,7 +30,7 @@ export const FavProvider = ({ children }) => {
       };
 
     return (
-        <FavContext.Provider
+        <FavoriteContext.Provider
         value={{
             watchList: state.watchList,
             addMovieToWatchList,
@@ -37,7 +38,7 @@ export const FavProvider = ({ children }) => {
           }}
         >
             {children}
-        </FavContext.Provider>
+        </FavoriteContext.Provider>
     )
 
 };

@@ -10,7 +10,8 @@ export default function Featured({ type, setGenre }) {
   useEffect(() => {
     const getRandomContent = async () => {
       try {
-        const res = await axios.get(`/movies/random?type=${type}`, {  //feature homepage defaults to random "Movie" only
+        const res = await axios.get(`/movies/random?type=${type}`, {
+          //feature homepage defaults to random "Movie" only
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -24,20 +25,20 @@ export default function Featured({ type, setGenre }) {
     getRandomContent();
   }, [type]);
 
-  console.log("CONTENT",content);
+  console.log("CONTENT", content);
 
   return (
     <div className="featured">
       {type && (
         <div className="category">
           {/* if selected type is "movies", display "Movies", etc */}
-          <span>{type === "movies" ? "Movies" : "Series" }</span>
+          <span>{type === "movies" ? "Movies" : "Series"}</span>
           <select
             name="genre"
             id="genre"
-            onChange={(e) => setGenre(e.target.value)}  //grab the value of the selected genre 
-          > 
-          {/* value of selected genre must match exactly with list genre in DB! */}
+            onChange={(e) => setGenre(e.target.value)} //grab the value of the selected genre
+          >
+            {/* value of selected genre must match exactly with list genre in DB! */}
             <option>Genre</option>
             <option value="action">Action</option>
             <option value="adventure">Adventure</option>
@@ -55,15 +56,24 @@ export default function Featured({ type, setGenre }) {
         <span className="description">{content.description}</span>
         <div className="buttons">
           <button className="play">
-            <Link style={{ textDecoration:'none',color: 'black', display:'contents' }} to={{ pathname: "/watch/" + content._id }}>
-            <PlayArrow />
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "black",
+                display: "contents",
+              }}
+              to={{ pathname: "/watch/" + content._id }}
+            >
+              <PlayArrow />
               <span>Play</span>
             </Link>
           </button>
-          <button className="more">
-            <InfoOutlined />
-            <span>Info</span>
-          </button>
+          <Link style={{textDecorationLine: 'none'}}  to={{ pathname: "/info/" + content._id }} className="link">
+            <button style={{textDecorationLine: 'none'}}  className="more">
+              <InfoOutlined style={{textDecorationLine: 'none'}} />
+              <span style={{textDecorationLine: 'none'}} >Info</span>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

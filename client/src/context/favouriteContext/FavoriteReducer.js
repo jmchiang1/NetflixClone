@@ -1,4 +1,4 @@
-const FavReducer = (state, action) => {
+const FavoriteReducer = (state, action) => {
     switch (action.type) {
       case "ADD_MOVIE_TO_WATCHLIST":
         return {
@@ -17,4 +17,5 @@ const FavReducer = (state, action) => {
     }
   };
   
-  export default FavReducer;
+  export default FavoriteReducer;
+  
