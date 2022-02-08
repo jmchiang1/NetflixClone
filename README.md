@@ -34,7 +34,7 @@ Full-stack Netflix Clone with Admin Panel, built using the following technologie
 - See the latest 5 Added Users
 
 ![Alt text](/client/public/Screenshots/adminHome.png?raw=true "Client Home Page")
-![Alt text](/client/public/Screenshots/AdminMovieList.png?raw=true "Client Single Movie Page")
+![Alt text](/client/public/Screenshots/adminMovieList.png?raw=true "Client Single Movie Page")
 ![Alt text](/client/public/Screenshots/createMovie.png?raw=true "Client MyList Page")
 ![Alt text](/client/public/Screenshots/updateMovie.png?raw=true "Client MyList Page")
 
