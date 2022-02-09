@@ -96,4 +96,17 @@ router.delete("/:id", verifyToken, async (req, res) => {
   }
 });
 
+//SEACH FOR MOVIE 
+router.get("/search", async (req, res) => {
+  try {
+    const searchFiled = req.query.title;
+    const searchMovie = await Movie.find({
+      title: { $regex: searchFiled, $options: "$i" },
+    });
+    res.status(200).json(searchMovie);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;

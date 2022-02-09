@@ -27,8 +27,8 @@ function Topbar() {
               <img
                 src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/227_Netflix_logo-512.png"
                 alt="nothing to see here"
-                width={32}
-                height={32}
+                width={25}
+                height={25}
               />
             </a>
           </button>

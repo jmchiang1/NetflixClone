@@ -3,7 +3,7 @@ import Home from "./components/Home";
 import Watch from "./components/Watch";
 import Register from "./components/Register";
 import Login from "./components/Login";
-// import Feature from "./components/Featured";
+import Search from "./components/Search";
 import SingleMovie from "./components/SingleMovie";
 import MyList from "./components/MyList";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -36,6 +36,7 @@ function App() {
             <Route path="/watch/:watchID" element={<Watch />} />
             <Route path="/info/:infoID" element={<SingleMovie />} />
             <Route path="/mylist" element={<MyList />} />
+            <Route path="/search" element={<Search />} />
           </>
         )}
       </Routes>

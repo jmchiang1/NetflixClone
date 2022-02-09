@@ -13,11 +13,11 @@ Full-stack Netflix Clone with Admin Panel, built using the following technologie
 ## Key User Features Include
 - Login/Logout with JWT authenication
 - Feature Page with a randomize movie upon refresh 
-- Browse movies by list in carousel format
-- Popup bubble upon hovering shows movie description, year, age limit, and trailer
+- Browse list of movies by list in carousel format
 - Watch page for specific movie trailers
-- Sort home page by Movies or Series then by Genre
+- Display home page by "Movies" or "Series" then by "Genre"
 - Add movies to a MyList page
+- Search by specific movie 
 - Single Movie Page
 
 ![Alt text](/client/public/Screenshots/homepage.png?raw=true "Client Home Page")

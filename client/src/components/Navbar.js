@@ -2,6 +2,7 @@ import React from "react";
 import "./Styles/Navbar.scss";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext/AuthContext";
@@ -31,6 +32,11 @@ function Navbar() {
           </Link>
           <Link to="/mylist" className="link">
           <span>My List</span>
+          </Link>
+          <Link to="/search" className="link">
+          <span>
+            <SearchOutlinedIcon/>
+          </span>
           </Link>
         </div>
 
