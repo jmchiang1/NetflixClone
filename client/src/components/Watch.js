@@ -7,12 +7,14 @@ import ReactPlayer from "react-player/lazy";
 import Navbar from "./Navbar";
 
 const Watch = () => {
+  //state of movies and movie id from URL (params)
   const [movie, setMovie] = useState({});
   const params = useParams();
 
   console.log("WATCHID", params.watchID); //returns correct movie id
   console.log("MOVIE", movie); //return empty object
 
+  //Get single movie by id 
   useEffect(() => {
     const getMovie = async () => {
       try {
@@ -45,7 +47,7 @@ const Watch = () => {
           controls
           playing={true}
           loop={true}
-          url={movie.video}
+          url={movie.video} //play the movie video
           className="video"
           width="80vw"
           height="80vh"

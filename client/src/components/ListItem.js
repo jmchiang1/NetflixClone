@@ -7,17 +7,17 @@ import { PlayArrow, MoreVert, CheckOutlined, Add } from "@material-ui/icons";
 import { FavoriteContext } from "../context/favouriteContext/FavoriteContext";
 
 const Listitem = ({ index, item }) => {
-  const { addMovieToWatchList, removeMovieFromWatchList } =
-    useContext(FavoriteContext); //grab removeWatchlist and watchlist from context
+
+  //grab watchlist functions from context
+  const { addMovieToWatchList, removeMovieFromWatchList } = useContext(FavoriteContext);
   const [isHovered, setIsHovered] = useState(false);
   const [movie, setMovie] = useState({});
   const [check, setCheck] = useState(false);
 
   useEffect(() => {
-    // setTimeout(() => {
     const getMovie = async () => {
       try {
-        const res = await axios.get("movies/find/" + item, {
+        const res = await axios.get("movies/find/" + item, {  //grab single movie from DB
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -29,20 +29,18 @@ const Listitem = ({ index, item }) => {
       }
     };
     getMovie();
-    // }, 500);
   }, [item]);
 
   return (
     <>
-      {/* <Link to={{ pathname: "/watch/" + movie?._id, movie: movie }}> */}
       <div className="listItemContainer">
         <div
           className="listItem"
           style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
-          onMouseEnter={() => setIsHovered(true)}
+          onMouseEnter={() => setIsHovered(true)} //when mouse is on the container, set hovered to true
           onMouseLeave={() => setIsHovered(false)}
         >
-          {isHovered ? (
+          {isHovered ? (  //if hovered, display the Video Player instead of movie image
             <>
               <ReactPlayer
                 controls
@@ -60,6 +58,7 @@ const Listitem = ({ index, item }) => {
               <img src={movie.imgSmall} alt="nothing to see here" />
             </>
           )}
+          {/* Then display the rest of the movie data underneath it  */}
           <div className="itemInfo">
             <div className="icons">
               <div className="iconsLeft">
@@ -67,7 +66,7 @@ const Listitem = ({ index, item }) => {
                   <PlayArrow className="icon play" style={{ color: "white" }} />
                 </Link>
 
-                {/* if icon is Checked, render checked icon, otherwise render Add */}
+                {/* If icon is checked, render checked icon, otherwise render "Add" */}
                 {check ? (
                   <CheckOutlined
                     className="icon"
@@ -85,7 +84,7 @@ const Listitem = ({ index, item }) => {
 
               <div className="iconsRight">
                 <Link
-                  to={{ pathname: "/info/" + movie._id, movie: movie }}
+                  to={{ pathname: "/info/" + movie._id, movie: movie }} //link to single movie page
                   className="link"
                 >
                   <MoreVert
@@ -106,89 +105,8 @@ const Listitem = ({ index, item }) => {
           </div>
         </div>
       </div>
-      {/* </Link> */}
     </>
   );
 };
 
 export default Listitem;
-
-//PREVIOUS CODE...DO NOT ERASE
-// import "./Styles/ListItem.scss";
-// import { useState, useEffect } from "react";
-// import ReactPlayer from "react-player/lazy";
-// import axios from "axios";
-// import { Link } from "react-router-dom";
-
-// export default function ListItem({ index, item }) {
-//   const [isHovered, setIsHovered] = useState(false);
-//   const [movie, setMovie] = useState({});
-
-//   useEffect(() => {
-//     const getMovie = async () => {
-//       try {
-//         const res = await axios.get("/movies/find/" + item, {
-//           headers: {
-//             token:
-//               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-//           },
-//         });
-//         setMovie(res.data);
-//       } catch (err) {
-//         console.log(err);
-//       }
-//     };
-//     getMovie();
-//   }, [item]);
-
-//   return (
-//     <Link to={{ pathname: "/watch/" + movie?._id, movie: movie }}>
-//       <div className="listItemContainer">
-//         <div
-//           className="listItem"
-//           style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
-//           onMouseEnter={() => setIsHovered(true)}
-//           onMouseLeave={() => setIsHovered(false)}
-//         >
-//           {isHovered ? (
-//             <>
-//               <ReactPlayer
-//                 controls
-//                 playing={true}
-//                 loop={true}
-//                 url={movie.trailer}
-//                 className="trailer"
-//                 width="100%"
-//                 height="60%"
-//                 muted={true}
-//               />
-//               {/* <div className="itemInfo">
-//                 <div className="icons"></div>
-//                 <div className="itemInfoTop">
-//                   <span>{movie.duration}</span>
-//                   <span className="limit">{movie.limit}+</span>
-//                   <span>{movie.year}</span>
-//                 </div>
-//                 <div className="desc">{movie.description}</div>
-//                 <div className="genre">{movie.genre}</div>
-//               </div> */}
-//             </>
-//           ) : (
-//             <>
-//               <img src={movie.imgSmall} alt="nothing to see here" />
-//             </>
-//           )}
-//           <div className="itemInfo">
-//             <div className="itemInfoTop">
-//               <span>{movie.duration}</span>
-//               <span className="limit">{movie.limit}+</span>
-//               <span>{movie.year}</span>
-//             </div>
-//             <div className="desc">{movie.description}</div>
-//             <div className="genre">{movie.genre}</div>
-//           </div>
-//         </div>
-//       </div>
-//     </Link>
-//   );
-// }

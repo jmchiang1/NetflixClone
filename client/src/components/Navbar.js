@@ -9,8 +9,7 @@ import { AuthContext } from "../context/authContext/AuthContext";
 import { logout } from "../context/authContext/AuthActions";
 
 function Navbar() {
-  const { user } = useContext(AuthContext);
-  const { dispatch } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
   let navigate = useNavigate();
 
   return (
@@ -54,9 +53,9 @@ function Navbar() {
           <div className="profile">
             <ArrowDropDownIcon className="icon" />
             <div className="options">
-              <span onClick={() => dispatch(logout())
+              <span onClick={() => dispatch(logout()) //trigger logout function from context then...
               .then(() => {
-                navigate('/register') //redirect back to register page after logging out
+                navigate('/register') //redirect back to register page
               })}>Logout</span>
             </div>
           </div>

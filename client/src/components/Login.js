@@ -6,16 +6,19 @@ import ReactDOM from 'react-dom';
 import "./Styles/Login.scss";
 
 export default function Login() {
+
+  //state of email and password inputs 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { dispatch, error } = useContext(AuthContext);
   
   const handleLogin = (e) => {
     e.preventDefault();
-    login({ email, password }, dispatch);
+    login({ email, password }, dispatch); //login with email and password input 
     if(error){
-      const element = <p>Wrong password or username</p>
-      ReactDOM.render(element, document.getElementById('error'));
+      return (
+        <p>Wrong password or username</p>
+      )
     }
   };
   return (
@@ -38,13 +41,14 @@ export default function Login() {
           <input
             type="email"
             placeholder="Email or phone number"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}  //grab value of email input 
           />
           <input
             type="password"
             placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)} //grab value of password input 
           />
+          {/* execute handleLogin function when you press sign in */}
           <button className="loginButton" onClick={handleLogin}>
             Sign In
           </button>

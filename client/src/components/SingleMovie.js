@@ -9,11 +9,12 @@ import { FavoriteContext } from '../context/favouriteContext/FavoriteContext'
 
 const Info = () => {
 
+  //state of movies and watchlist context
   const [movie, setMovie] = useState({});
   const { addMovieToWatchList, watchList } = useContext(FavoriteContext);
-  const params = useParams();
+  const params = useParams(); //grab movie id from URL 
 
-  //GET movie by id 
+  //GET single movie by id 
   useEffect(() => {
     const getMovie = async () => {
       try {
@@ -42,7 +43,7 @@ const Info = () => {
         <div
           className="cover"
           style={{
-            backgroundImage: `url(${movie.img})`, //background image 
+            backgroundImage: `url(${movie.img})`, //background movie image 
           }}
         >
           <div className="singleColumn">

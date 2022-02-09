@@ -7,7 +7,7 @@ const INITIAL_STATE = { //initial state of context, basically same as "LOGIN_STA
   error: false,
 };
 
-export const AuthContext = createContext(INITIAL_STATE);  //create context with initial state
+export const AuthContext = createContext(INITIAL_STATE);  //create context with the initial state above
 
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
@@ -19,7 +19,7 @@ export const AuthContextProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        user: state.user,             //pass in user, fetching, and error states to context state 
+        user: state.user,             //pass in user, fetching, and error states to context 
         isFetching: state.isFetching,
         error: state.error,
         dispatch,                     //way to dispatch the actions from AuthActions.js

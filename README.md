@@ -20,7 +20,7 @@ Full-stack Netflix Clone with Admin Panel, built using the following technologie
 - Search by specific movie 
 - Single Movie Page
 
-![Alt text](/client/public/Screenshots/homepage.png?raw=true "Client Home Page")
+![Alt text](/client/public/Screenshots/clientHome.png?raw=true "Client Home Page")
 ![Alt text](/client/public/Screenshots/SingleMoviePage.png?raw=true "Client Single Movie Page")
 ![Alt text](/client/public/Screenshots/myListPage.png?raw=true "Client MyList Page")
 
@@ -31,7 +31,8 @@ Full-stack Netflix Clone with Admin Panel, built using the following technologie
 - See list of all movies
 - See list of all movie lists
 - Create, Update, Delete all movies, users, and movie lists
-- See the latest 5 Added Users
+- View the latest 10 Added Users
+- View the latest 10 Added Movies
 
 ![Alt text](/client/public/Screenshots/adminHome.png?raw=true "Client Home Page")
 ![Alt text](/client/public/Screenshots/adminMovieList.png?raw=true "Client Single Movie Page")
