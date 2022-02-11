@@ -18,6 +18,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
+const PORT = process.env.PORT || 5000;
+
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -33,17 +35,17 @@ app.use("/movies", movieRoute);
 app.use("/lists", listRoute);
 
 //middleware to direct express to "client" and "admin" folder
-app.use(express.static(path.join(__dirname, "/client/build")));
-app.use(express.static(path.join(__dirname, "/admin/build")));
+app.use(express.static(path.join(__dirname, "/.client/build")));
+app.use(express.static(path.join(__dirname, "/.admin/build")));
 
 //redirect to client and admin paths 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '/.client/build', 'index.html'));
 });
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/admin/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '/.admin/build', 'index.html'));
 });
 
-app.listen( process.env.PORT || 8080, () => {
-  console.log("Server running on ");
+app.listen(PORT, () => {
+  console.log(`server running on port ${PORT}`);
 });
