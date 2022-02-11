@@ -13,7 +13,7 @@ const ListSchema = new mongoose.Schema(
     genre: {
       type: String,
     },
-    content: {
+    content: {      //Array holds all movies/series objects 
       type: Array,
     },
   },

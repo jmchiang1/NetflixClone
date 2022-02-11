@@ -28,13 +28,13 @@ const MovieSchema = new mongoose.Schema(
     year: {
       type: String,
     },
-    limit: {            //age resctriction
+    limit: {            //age restriction
       type: Number,
     },
     genre: {
       type: String,
     },
-    isSeries: {
+    isSeries: {        //series or movie
       type: Boolean,
       default: false,
     },

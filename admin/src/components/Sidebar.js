@@ -40,35 +40,35 @@ function Sidebar() {
             </Link>
             {/* Movies Link */}
             <Link to="/movies" className="link">
-              <li className="sidebarListItem" active>
+              <li className="sidebarListItem" active="true">
                 <PlayCircleOutline className="sidebarIcon" />
                 Movies
               </li>
             </Link>
             {/* Lists Link */}
             <Link to="/lists" className="link">
-              <li className="sidebarListItem" active>
+              <li className="sidebarListItem" active="true">
                 <List className="sidebarIcon" />
                 Lists
               </li>
             </Link>
             {/* Add Movie Link */}
             <Link to="/newMovie" className="link">
-              <li className="sidebarListItem" active>
+              <li className="sidebarListItem" active="true">
                 <AddToQueue className="sidebarIcon" />
                 Add Movie
               </li>
             </Link>
             {/* Add List Link */}
             <Link to="/newList" className="link">
-              <li className="sidebarListItem" active>
+              <li className="sidebarListItem" active="true">
                 <QueuePlayNext className="sidebarIcon" />
                 Add List
               </li>
             </Link>
             {/* Add User Link */}
             <Link to="/newUser" className="link">
-              <li className="sidebarListItem" active>
+              <li className="sidebarListItem" active="true">
                 <QueuePlayNext className="sidebarIcon" />
                 Add User
               </li>

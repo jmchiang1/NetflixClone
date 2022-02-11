@@ -6,7 +6,7 @@ export const loginStart = () => ({
 });
 export const loginSuccess = (user) => ({
   type: "LOGIN_SUCCESS",
-  payload: user,  //if user is logged in send user 
+  payload: user,  //if user is logged in return user object 
 });
 export const loginFailure = () => ({
   type: "LOGIN_FAILURE",

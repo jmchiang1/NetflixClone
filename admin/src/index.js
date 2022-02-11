@@ -7,7 +7,7 @@ import { MovieContextProvider } from "./context/movieContext/MovieContext";
 import { ListContextProvider } from "./context/listContext/ListContext";
 import { UserContextProvider } from "./context/userContext/UserContext";
 
-//app is the { children } in the context.
+//app is the { children } in the context API.
 //all info in context api will be availabe to App component, which also holds every other component
 
 ReactDOM.render(

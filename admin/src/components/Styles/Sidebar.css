@@ -42,11 +42,6 @@
   background-color: teal;
 }
 
-.tab.active {
-  background: blue;
-  /* color: red; */
-}
-
 .sidebarIcon {
   margin-right: 5px;
   font-size: 25px !important;

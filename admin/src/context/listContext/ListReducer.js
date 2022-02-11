@@ -1,5 +1,6 @@
 const ListReducer = (state, action) => {
   switch (action.type) {
+    //  GET LIST
     case "GET_LISTS_START":
       return {
         lists: [],
@@ -8,7 +9,7 @@ const ListReducer = (state, action) => {
       };
     case "GET_LISTS_SUCCESS":
       return {
-        lists: action.payload,
+        lists: action.payload,  //returns list object if successful 
         isFetching: false,
         error: false,
       };
@@ -18,6 +19,8 @@ const ListReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+
+    //CREATE LIST
     case "CREATE_LIST_START":
       return {
         ...state,
@@ -26,7 +29,7 @@ const ListReducer = (state, action) => {
       };
     case "CREATE_LIST_SUCCESS":
       return {
-        lists: [...state.lists, action.payload],
+        lists: [...state.lists, action.payload],  //add new list to existing lists  
         isFetching: false,
         error: false,
       };
@@ -36,6 +39,8 @@ const ListReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+
+    //UPDATE LIST
     case "UPLOAD_LIST_START":
       return {
         ...state,
@@ -44,7 +49,7 @@ const ListReducer = (state, action) => {
       };
     case "UPLOAD_LIST_SUCCESS":
       return {
-        lists: state.lists.map(
+        lists: state.lists.map( //map through list that match list id?
           (list) => list._id === action.payload._id && action.payload
         ),
         isFetching: false,
@@ -56,6 +61,8 @@ const ListReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+
+    //DELETE LIST
     case "DELETE_LIST_START":
       return {
         ...state,
@@ -63,7 +70,7 @@ const ListReducer = (state, action) => {
         error: false,
       };
     case "DELETE_LIST_SUCCESS":
-      return {
+      return {  //filter out list by id
         lists: state.lists.filter((list) => list._id !== action.payload),
         isFetching: false,
         error: false,

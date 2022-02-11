@@ -1,6 +1,8 @@
 const MovieReducer = (state, action) => {
   switch (action.type) {
-    case "GET_MOVIES_START":  //initial state of movies 
+
+    //GET MOVIES
+    case "GET_MOVIES_START": //initial state of movies
       return {
         movies: [],
         isFetching: true,
@@ -8,16 +10,18 @@ const MovieReducer = (state, action) => {
       };
     case "GET_MOVIES_SUCCESS":
       return {
-        movies: action.payload, //if successful, return movies
+        movies: action.payload, //if successful, return movie object data
         isFetching: false,
         error: false,
       };
     case "GET_MOVIES_FAILURE":
       return {
-        movies: [],         //if failure return empty array
+        movies: [], //if failure return empty array
         isFetching: false,
         error: true,
       };
+
+    //CREATE MOVIE
     case "CREATE_MOVIE_START":
       return {
         ...state, //return previous state
@@ -26,7 +30,7 @@ const MovieReducer = (state, action) => {
       };
     case "CREATE_MOVIE_SUCCESS":
       return {
-        movies: [...state.movies, action.payload],  //add movie to existing list 
+        movies: [...state.movies, action.payload], //add movie to existing list of movies
         isFetching: false,
         error: false,
       };
@@ -36,6 +40,8 @@ const MovieReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+
+    //UPDATE MOVIE
     case "UPDATE_MOVIE_START":
       return {
         ...state,
@@ -44,7 +50,7 @@ const MovieReducer = (state, action) => {
       };
     case "UPDATE_MOVIE_SUCCESS":
       return {
-        movies: state.movies.map(
+        movies: state.movies.map( //map movies that match movie id?
           (movie) => movie._id === action.payload._id && action.payload
         ),
         isFetching: false,
@@ -56,6 +62,8 @@ const MovieReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+
+    //DELETE MOVIE
     case "DELETE_MOVIE_START":
       return {
         ...state,
@@ -64,7 +72,7 @@ const MovieReducer = (state, action) => {
       };
     case "DELETE_MOVIE_SUCCESS":
       return {
-        movies: state.movies.filter((movie) => movie._id !== action.payload), //delete single movie that matches id 
+        movies: state.movies.filter((movie) => movie._id !== action.payload), //delete single movie that matches id
         isFetching: false,
         error: false,
       };
