@@ -31,6 +31,18 @@ app.use("/users", userRoute);
 app.use("/movies", movieRoute);
 app.use("/lists", listRoute);
 
-app.listen(8080, () => {
-  console.log("Server running on PORT 8080");
+//middleware to direct express to "client" and "admin" folder
+app.use(express.static(path.join(__dirname, "/client")));
+app.use(express.static(path.join(__dirname, "/admin")));
+
+//redirect to client and admin paths 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/admin/build', 'index.html'));
+});
+
+app.listen( process.env.PORT || 8080, () => {
+  console.log("Server running on ");
 });

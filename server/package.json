@@ -4,7 +4,8 @@
   "description": "MERN Netflix Clone built using MongoDB, Express, React, and Node.js",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
