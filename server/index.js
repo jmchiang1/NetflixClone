@@ -32,8 +32,8 @@ app.use("/movies", movieRoute);
 app.use("/lists", listRoute);
 
 //middleware to direct express to "client" and "admin" folder
-app.use(express.static(path.join(__dirname, "/client")));
-app.use(express.static(path.join(__dirname, "/admin")));
+app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "/admin/build")));
 
 //redirect to client and admin paths 
 app.get('*', (req, res) => {
