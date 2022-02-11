@@ -4,9 +4,9 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-var bodyParser = require('body-parser');
-const cors = require('cors');
-const path = require('path');
+var bodyParser = require("body-parser");
+const cors = require("cors");
+const path = require("path");
 
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
@@ -35,16 +35,18 @@ app.use("/movies", movieRoute);
 app.use("/lists", listRoute);
 
 //middleware to direct express to "client" and "admin" folder
-app.use(express.static(path.join(__dirname, "/.client/build")));
-app.use(express.static(path.join(__dirname, "/.admin/build")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/.client/build")));
+  app.use(express.static(path.join(__dirname, "/.admin/build")));
 
-//redirect to client and admin paths 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/.client/build', 'index.html'));
-});
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/.admin/build', 'index.html'));
-});
+  //redirect to client and admin paths
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "/.client/build", "index.html"));
+  });
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "/.admin/build", "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
