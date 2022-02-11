@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 var bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");

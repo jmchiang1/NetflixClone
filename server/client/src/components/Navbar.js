@@ -41,7 +41,7 @@ function Navbar() {
 
         <div className="right"> Admin Dashboard
           <button style={{marginRight: '1rem', marginLeft: '10px', borderRadius: '5px', border: '1px solid white'}}>
-            <a target="_blank" rel="noreferrer" href="http://localhost:4000/">
+            <a target="_blank" rel="noreferrer" href="https://netflix-clone-jonathan.herokuapp.com/">
               <SupervisorAccountIcon style={{color:'teal'}} />
             </a>
           </button>

@@ -23,7 +23,7 @@ function Topbar() {
               border: "1px solid white",
             }}
           >
-            <a target="_blank" rel="noreferrer" href="http://localhost:3000/">
+            <a target="_blank" rel="noreferrer" href="https://netflix-clone-jonathan.herokuapp.com/">
               <img
                 src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/227_Netflix_logo-512.png"
                 alt="nothing to see here"
