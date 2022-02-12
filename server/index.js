@@ -7,7 +7,8 @@ const dotenv = require("dotenv");
 var bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-const URL = "mongodb+srv://jmchiang:darklord5@mthree-mongo.ojzwn.mongodb.net/netflix?retryWrites=true&w=majority"
+const URL =
+  "mongodb+srv://jmchiang:darklord5@mthree-mongo.ojzwn.mongodb.net/netflix?retryWrites=true&w=majority";
 
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
@@ -39,15 +40,18 @@ app.use("/lists", listRoute);
 //middleware to direct express to "client" and "admin" folder
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build"))); //client
-  app.use('/admin', express.static(path.join(__dirname, "/admin/build")));  //admin
+  app.use(express.static(path.join(__dirname, "/admin/build"))); //admin
 
   //redirect to client and admin paths
-  app.get("*", (req, res) => {
+  app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "/client/build", "index.html"));
   });
-  app.get("/admin/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "/admin/build", "index.html"));
-  });
+  // app.get("/admin", (req, res) => {
+  //   res.sendFile(path.join(__dirname, "/admin/build", "index.html"));
+  // });
+  app.get("/admin", (req, res) =>
+    res.sendFile(path.join(__dirname, "/admin/build", "index.html"))
+  );
 }
 
 app.listen(PORT, () => {
