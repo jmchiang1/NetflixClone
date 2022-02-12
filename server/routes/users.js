@@ -58,29 +58,29 @@ router.get("/", async (req, res) => {
 });
 
 //GET USER STATS
-router.get("/stats", async (req, res) => {
-  const today = new Date();
-  // const latYear = today.setFullYear(today.setFullYear() - 1);
+// router.get("/stats", async (req, res) => {
+//   const today = new Date();
+//   // const latYear = today.setFullYear(today.setFullYear() - 1);
 
-  try {
-    const data = await User.aggregate([
-      {
-        $project: {
-          month: { $month: "$createdAt" },
-        },
-      },
-      {
-        $group: {
-          _id: "$month",
-          total: { $sum: 1 },
-        },
-      },
-    ]);
-    res.status(200).json(data);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//   try {
+//     const data = await User.aggregate([
+//       {
+//         $project: {
+//           month: { $month: "$createdAt" },
+//         },
+//       },
+//       {
+//         $group: {
+//           _id: "$month",
+//           total: { $sum: 1 },
+//         },
+//       },
+//     ]);
+//     res.status(200).json(data);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 //CREATE
 router.post('/', async (req, res) =>{

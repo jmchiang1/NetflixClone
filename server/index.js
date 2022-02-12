@@ -38,15 +38,15 @@ app.use("/lists", listRoute);
 //Server production assets
 //middleware to direct express to "client" and "admin" folder
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "./client/build")));
-  app.use(express.static(path.join(__dirname, "./admin/build")));
+  app.use(express.static(path.join(__dirname, "/client/build"))); //client
+  app.use('/admin', express.static(path.join(__dirname, "/admin/build")));  //admin
 
   //redirect to client and admin paths
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "/client/build", "index.html"));
   });
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "admin", "build", "index.html"));
+  app.get("/admin/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "/admin/build", "index.html"));
   });
 }
 
