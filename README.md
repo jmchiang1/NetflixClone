@@ -20,9 +20,9 @@ Full-stack Netflix Clone with Admin Panel, built using the following technologie
 - Search by specific movie 
 - Single Movie Page
 
-![Alt text](/client/public/Screenshots/clientHome.png?raw=true "Client Home Page")
-![Alt text](/client/public/Screenshots/SingleMoviePage.png?raw=true "Client Single Movie Page")
-![Alt text](/client/public/Screenshots/myListPage.png?raw=true "Client MyList Page")
+![Alt text](server/client/public/Screenshots/clientHome.png?raw=true "Client Home Page")
+![Alt text](server/client/public/Screenshots/SingleMoviePage.png?raw=true "Client Single Movie Page")
+![Alt text](server/client/public/Screenshots/myListPage.png?raw=true "Client MyList Page")
 
 
 ## Key Admin Features Include
@@ -34,10 +34,10 @@ Full-stack Netflix Clone with Admin Panel, built using the following technologie
 - View the latest 10 Added Users
 - View the latest 10 Added Movies
 
-![Alt text](/client/public/Screenshots/adminHome.png?raw=true "Client Home Page")
-![Alt text](/client/public/Screenshots/adminMovieList.png?raw=true "Client Single Movie Page")
-![Alt text](/client/public/Screenshots/createMovie.png?raw=true "Client MyList Page")
-![Alt text](/client/public/Screenshots/updateMovie.png?raw=true "Client MyList Page")
+![Alt text](server/client/public/Screenshots/adminHome.png "Client Home Page")
+![Alt text](server/client/public/Screenshots/adminMovieList.png?raw=true "Client Single Movie Page")
+![Alt text](server/client/public/Screenshots/createMovie.png?raw=true "Client MyList Page")
+![Alt text](server/client/public/Screenshots/updateMovie.png?raw=true "Client MyList Page")
 
 ## Future Features
 - Ability to downvote / update a movie and sort them in a MyList page
