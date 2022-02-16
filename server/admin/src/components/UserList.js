@@ -7,18 +7,18 @@ import { UserContext } from "../context/userContext/UserContext";
 import { deleteUser, getUsers } from "../context/userContext/apiCalls";
 
 export default function UserList() {
-  const { users, dispatch } = useContext(UserContext);
+  const { users, dispatch } = useContext(UserContext);  //user and dispatch from userContext
 
   useEffect(() => {
-    getUsers(dispatch);
+    getUsers(dispatch); //get users 
   }, [dispatch]);
 
-  const handleDelete = (id) => {
+  const handleDelete = (id) => {  //delete user by id
     deleteUser(id, dispatch);
     alert("Delete successfully");
   };
 
-  const columns = [
+  const columns = [ //lists of users
     { field: "_id", headerName: "ID", width: 200 },
     {
       field: "user",
@@ -46,13 +46,13 @@ export default function UserList() {
         return (
           <>
             <Link
-              to={{ pathname: "/user/" + params.row._id, user: params.row }}
+              to={{ pathname: "/user/" + params.row._id, user: params.row }}  //link to single user 
             >
               <button className="userListEdit">Edit</button>
             </Link>
             <DeleteOutline
               className="userListDelete"
-              onClick={() => handleDelete(params.row._id)}
+              onClick={() => handleDelete(params.row._id)}  //delete user 
             />
           </>
         );

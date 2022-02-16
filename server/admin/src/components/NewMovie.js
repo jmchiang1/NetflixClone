@@ -6,10 +6,10 @@ import { useHistory } from "react-router-dom";
 
 
 export default function NewMovie() {
-  const { dispatch } = useContext(MovieContext);
+  const { dispatch } = useContext(MovieContext);  //movie dispatch
   let history = useHistory();
 
-  const [movie, setMovie] = useState({
+  const [movie, setMovie] = useState({  //state of movies
     title: "",
     description: "",
     img: "",
@@ -23,7 +23,7 @@ export default function NewMovie() {
     isSeries: false,
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e) => { //grab value from input data
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
   };
@@ -33,12 +33,12 @@ export default function NewMovie() {
   const handleSubmit = (e) => {
     try {
       e.preventDefault();
-      createMovie(movie, dispatch);
+      createMovie(movie, dispatch); //create movie
       alert("Movie Successfully created");
-      history.push("/movies")
+      history.push("/movies") //redirect back to movies 
     } catch (err) {
       console.log("Error in creating movie");
-      alert("Error in creating movie");
+      alert("Movie Created Not Successful");
     }
   };
 

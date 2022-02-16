@@ -5,28 +5,29 @@ import { UserContext } from "../context/userContext/UserContext";
 import { useHistory } from "react-router-dom";
 
 export default function NewUser() {
-  const { dispatch } = useContext(UserContext);
+  const { dispatch } = useContext(UserContext); //dispatch from user context
   let history = useHistory();
 
-  const [user, setUser] = useState({
+  const [user, setUser] = useState({  //state of user information
     username: "",
     email: "",
     password: "",
     isAdmin: false,
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e) => { //grab value from input data
     const value = e.target.value;
     setUser({ ...user, [e.target.name]: value });
   };
-  console.log("User", user);
+
+  console.log("User", user);  //returns user object
 
   const handleSubmit = (e) => {
     try {
       e.preventDefault();
-      createUser(user, dispatch);
+      createUser(user, dispatch); //create user 
       alert("User Successfully created");
-      history.push("/users");
+      history.push("/users"); //redirect back to users page
     } catch (err) {
       console.log("Error in creating new User");
       alert("Error in creating new User");

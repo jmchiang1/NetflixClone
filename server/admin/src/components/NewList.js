@@ -7,30 +7,36 @@ import { createList } from "../context/listContext/apiCalls";
 import { useHistory } from "react-router-dom";
 
 export default function NewList() {
-  const [list, setList] = useState(null);
+  const [list, setList] = useState(null); //state of lists
+  const { dispatch } = useContext(ListContext); //grab dispatch from list
+  const { movies, dispatch: dispatchMovie } = useContext(MovieContext); //grab from movie context
 
-  const { dispatch } = useContext(ListContext);
-  const { movies, dispatch: dispatchMovie } = useContext(MovieContext);
   const history = useHistory();
 
   useEffect(() => {
-    getMovies(dispatchMovie);
+    getMovies(dispatchMovie); //get movies
   }, [dispatchMovie]);
 
   const handleChange = (e) => {
+    //grab value from input data
     const value = e.target.value;
     setList({ ...list, [e.target.name]: value });
   };
 
   const handleSelect = (e) => {
+    //save selected options
     let value = Array.from(e.target.selectedOptions, (option) => option.value);
     setList({ ...list, [e.target.name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createList(list, dispatch);
-    history.push("/lists");
+    try {
+      createList(list, dispatch); //create list
+      history.push("/lists"); //redirect back to lists page 
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

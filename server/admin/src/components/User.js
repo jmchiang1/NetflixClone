@@ -7,14 +7,16 @@ import { useContext, useState, useEffect } from "react";
 import { axiosInstance } from "../config";
 
 export default function User() {
-  const [user, setUser] = useState([]);
-  const params = useParams();
+  const { dispatch } = useContext(UserContext); //dispatch from userContext
+  const [user, setUser] = useState([]); //state of user
+  const params = useParams(); //grab user id from URL
   const history = useHistory();
 
   useEffect(() => {
     const getUser = async () => {
       try {
         const res = await axiosInstance.get("/users/find/" + params.userId, {
+          //get single user by id
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -28,17 +30,21 @@ export default function User() {
     getUser();
   }, [params]);
 
-  const { dispatch } = useContext(UserContext);
   const handleChange = (e) => {
+    //grab value from input data
     const value = e.target.value;
     setUser({ ...user, [e.target.name]: value });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    updateUser(user._id, dispatch, user);
-    alert(`Edited ${user.username} successfully`);
-    history.push("/users")
+    try {
+      e.preventDefault();
+      updateUser(user._id, dispatch, user); //update user 
+      alert(`Edited ${user.username} successfully`);
+      history.push("/users"); //redirect back to users list page 
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

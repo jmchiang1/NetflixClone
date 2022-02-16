@@ -7,18 +7,18 @@ import { ListContext } from "../context/listContext/ListContext";
 import { deleteList, getLists } from "../context/listContext/apiCalls";
 
 export default function ListList() {
-  const { lists, dispatch } = useContext(ListContext);
+  const { lists, dispatch } = useContext(ListContext);  //grab lists and dispatch function from list context
 
-  useEffect(() => {
+  useEffect(() => { //grab lists
     getLists(dispatch);
   }, [dispatch]);
 
-  const handleDelete = (id) => {
+  const handleDelete = (id) => {  //delete lists
     deleteList(id, dispatch);
     alert("Delete list successful !");
   };
 
-  const columns = [
+  const columns = [ //table showing all lists 
     { field: "_id", headerName: "ID", width: 250 },
     { field: "title", headerName: "title", width: 250 },
     { field: "genre", headerName: "Genre", width: 150 },
@@ -31,7 +31,7 @@ export default function ListList() {
         return (
           <>
             <Link
-              to={{ pathname: "/list/" + params.row._id, list: params.row }}
+              to={{ pathname: "/list/" + params.row._id, list: params.row }}  //link to single list view 
             >
               <button className="productListEdit">Edit</button>
             </Link>

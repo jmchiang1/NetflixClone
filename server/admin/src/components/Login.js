@@ -4,13 +4,14 @@ import { AuthContext } from "../context/authContext/AuthContext";
 import "./Styles/Login.css";
 
 export default function Login() {
+  //state of email and passwod input data 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { isFetching, dispatch } = useContext(AuthContext); //grab fetching and dispatch from auth context
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login({ email, password }, dispatch);
+    login({ email, password }, dispatch); //login with email and password
   };
 
   return (

@@ -7,18 +7,18 @@ import { MovieContext } from "../context/movieContext/MovieContext";
 import { deleteMovie, getMovies } from "../context/movieContext/apiCalls";
 
 export default function MovieList() {
-  const { movies, dispatch } = useContext(MovieContext);
+  const { movies, dispatch } = useContext(MovieContext);  //grab movies and dispatch
 
   useEffect(() => {
-    getMovies(dispatch);
+    getMovies(dispatch);  //get movies
   }, [dispatch]);
 
-  const handleDelete = (id) => {
+  const handleDelete = (id) => {  //delete movie by id
     deleteMovie(id, dispatch);
     alert("Delete successfully !");
   };
 
-  const columns = [
+  const columns = [ //table of movies 
     { field: "_id", headerName: "ID", width: 150 },
     {
       field: "movie",
@@ -46,13 +46,13 @@ export default function MovieList() {
         return (
           <>
             <Link
-              to={{ pathname: "/movie/" + params.row._id, movie: params.row }}
+              to={{ pathname: "/movie/" + params.row._id, movie: params.row }}  //link to single movie page 
             >
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline
               className="productListDelete"
-              onClick={() => handleDelete(params.row._id)}
+              onClick={() => handleDelete(params.row._id)}  //delete movie
             />
           </>
         );

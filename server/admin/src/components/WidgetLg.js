@@ -4,7 +4,7 @@ import { axiosInstance } from "../config";
 
 export default function WidgetLg() {
 
-  const [newMovies, setNewMovies] = useState([]);
+  const [newMovies, setNewMovies] = useState([]); //state of newMovies 
 
   useEffect(() => {
     const getNewMovies = async () => {
@@ -15,13 +15,11 @@ export default function WidgetLg() {
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
         });
-        // console.log(res.data.slice(1,10));
-        setNewMovies(res.data.slice(0,10));  //only return the last 5 movies 
+        setNewMovies(res.data.slice(0,10));  //only return the last 10 movies 
       } catch (error) {
         console.log(error);
       }
     };
-    // console.log(getNewMovies)
     getNewMovies();
   }, []);
 

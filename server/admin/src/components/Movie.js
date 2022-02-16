@@ -8,16 +8,16 @@ import { axiosInstance } from "../config";
 
 export default function Movie() {
   const [movie, setMovie] = useState([]); //state of single movie object
-  const { dispatch } = useContext(MovieContext);
+  const { dispatch } = useContext(MovieContext); //grab dispatch from movie context
   const params = useParams(); //grabs movie id
 
-  // console.log("DISPATCH", dispatch);
-  console.log("MOVIE", movie);
+  console.log("MOVIE", movie); //returns movie object
 
   useEffect(() => {
     const getMovie = async () => {
       try {
         const res = await axiosInstance.get("/movies/find/" + params.movieId, {
+          //find single movie by id
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -32,6 +32,7 @@ export default function Movie() {
   }, [params]);
 
   const handleChange = (e) => {
+    //grab value from input
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
   };
@@ -40,9 +41,14 @@ export default function Movie() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateMovie(movie._id, dispatch, movie);
-    alert("Edit successfully");
-    history.push("/movies");
+    try {
+      updateMovie(movie._id, dispatch, movie);  //update movie with id, movie object, and dispatch
+      alert("Edit successfully");
+      history.push("/movies"); //redirect back to push
+    } catch (err) {
+      alert("Edit Movie Not Successful");
+      console.log(err);
+    }
   };
 
   return (
@@ -156,9 +162,9 @@ export default function Movie() {
             />
           </div>
         </form>
-      <button className="productButton" onClick={handleSubmit}>
-        Update
-      </button>
+        <button className="productButton" onClick={handleSubmit}>
+          Update
+        </button>
       </div>
     </div>
   );

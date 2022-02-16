@@ -5,7 +5,7 @@ import { AuthContext } from "../context/authContext/AuthContext";
 import { Link } from "react-router-dom";
 
 function Topbar() {
-  const { dispatch } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext); //dispatch from authContext
 
   return (
     <div className="topbar">
@@ -40,7 +40,7 @@ function Topbar() {
             >
               <span
                 style={{ color: "white", textDecoration: "none", marginRight: '10px' }}
-                onClick={() => dispatch(logout())}
+                onClick={() => dispatch(logout())}  //logout and clear all user data
               >
                 Logout
               </span>

@@ -7,11 +7,11 @@ import {
   AddToQueue,
   QueuePlayNext,
 } from "@material-ui/icons";
-import { Link, useHistory, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
 
-  const currentRoute = useHistory().location.pathname.toLowerCase();
+  // const currentRoute = useHistory().location.pathname.toLowerCase();
  
   return (
     <div className="sidebar">

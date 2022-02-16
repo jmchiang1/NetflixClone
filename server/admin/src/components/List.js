@@ -6,36 +6,46 @@ import { updateList } from "../context/listContext/apiCalls";
 import { getMovies } from "../context/movieContext/apiCalls";
 import { MovieContext } from "../context/movieContext/MovieContext";
 
-
 export default function List() {
   const location = useLocation();
   const getList = location.list;
 
+  console.log("location", location);
+  console.log("getList", getList);
+
   const [list, setList] = useState(getList);
-  const { dispatch } = useContext(ListContext);
-  const { movies, dispatch: dispatchMovie } = useContext(MovieContext);
+  const { dispatch } = useContext(ListContext); //dispatch list
+  const { movies, dispatch: dispatchMovie } = useContext(MovieContext); //dispatch movie
 
   let history = useHistory();
 
   useEffect(() => {
+    //grab all movies
     getMovies(dispatchMovie);
   }, [dispatchMovie]);
 
   const handleChange = (e) => {
+    //grab values of input data
     const value = e.target.value;
     setList({ ...list, [e.target.name]: value });
   };
 
   const handleSelect = (e) => {
+    //select movies from options
     let value = Array.from(e.target.selectedOptions, (option) => option.value);
     setList({ ...list, [e.target.name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateList(list._id, dispatch, list);
-    alert("Edit List Successful");
-    history.push("/lists");
+    try {
+      updateList(list._id, dispatch, list); //update list with id, dispatch, list object
+      alert("Edit List Successful");
+      history.push("/lists"); //redirect back to lists view
+    } catch (err) {
+      console.log(err);
+      alert("Edit List Not Successful");
+    }
   };
 
   return (
