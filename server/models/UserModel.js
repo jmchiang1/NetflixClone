@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema(
     },
     isAdmin: {
       type: Boolean,
-      default: false,
+      default: false, //admin status is defaulted to false unless changed in DB
     },
   },
   { timestamps: true }

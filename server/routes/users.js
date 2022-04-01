@@ -13,7 +13,7 @@ router.put("/:id", async (req, res) => {
       },  
       { new: true }     //return document after updating 
     );
-    res.status(200).json(updatedUser);
+    res.status(200).json(updatedUser);  //return updated user object 
   } catch (err) {
     res.status(500).json(err);
   }
@@ -23,13 +23,13 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", verify, async (req, res) => {
   if (req.user.id === req.params.id || req.user.isAdmin) {  //if current user is logged in or is as Admin...
     try {
-      await User.findByIdAndDelete(req.params.id);  //delete any functionality 
+      await User.findByIdAndDelete(req.params.id);  //delete object that matches id 
       res.status(200).json("User has been deleted...");
     } catch (err) {
       res.status(500).json(err);
     }
   } else {
-    res.status(403).json("You can delete only your account!");
+    res.status(403).json("You can delete only your account!");  //if user id doesn't match or is not admin, send 403 status code 
   }
 });
 
@@ -37,8 +37,8 @@ router.delete("/:id", verify, async (req, res) => {
 router.get("/find/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);  //get single user by id 
-    const { password, ...info } = user._doc;
-    res.status(200).json(info);
+    const { password, ...info } = user._doc;  //all user information 
+    res.status(200).json(info); //return all user info as json object
   } catch (err) {
     res.status(500).json(err);
   }
@@ -56,6 +56,19 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//CREATE
+router.post('/', async (req, res) =>{
+  const newUser = new User(req.body); //create new user 
+  try {
+     const saveUser =  await newUser.save();  //save user in DB
+     res.status(200).json(saveUser);
+  } catch (error) {
+      res.status(409).json({message: error.message});
+  }
+})
+
+module.exports = router;
 
 //GET USER STATS
 // router.get("/stats", async (req, res) => {
@@ -82,15 +95,3 @@ router.get("/", async (req, res) => {
 //   }
 // });
 
-//CREATE
-router.post('/', async (req, res) =>{
-  const newUser = new User(req.body); //create new user 
-  try {
-     const saveUser =  await newUser.save();  //save user in DB
-     res.status(200).json(saveUser);
-  } catch (error) {
-      res.status(409).json({message: error.message});
-  }
-})
-
-module.exports = router;

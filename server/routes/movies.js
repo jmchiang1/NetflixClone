@@ -7,12 +7,12 @@ router.get("/", verifyToken, async (req, res) => {
   if (req.user.isAdmin === true) {  //if user is admin...
     try {
       const movies = await Movie.find();  //get all movies 
-      res.status(200).json(movies.reverse());   //sort movies by most recent
+      res.status(200).json(movies.reverse());   //sort movies by most recent --> reverse()
     } catch (err) {
       res.status(500).json(err);
     }
   } else {
-    res.status(500).json({ message: "Admins Only!" });
+    res.status(500).json({ message: "Admins Only!" });  //if not admin, send 500 status code 
   }
 });
 
@@ -99,7 +99,7 @@ router.get("/search", async (req, res) => {
     const searchMovie = await Movie.find({  //returns object of all movies with titles that match the searchField
       title: { $regex: searchField, $options: "$i" },
     });
-    res.status(200).json(searchMovie);
+    res.status(200).json(searchMovie);  //return JSON list of the searched movies 
   } catch (error) {
     res.status(500).json(error);
   }

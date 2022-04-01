@@ -1,5 +1,3 @@
-// https://github.com/chuhueu/netflix-clone-28-s-team
-
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -7,8 +5,7 @@ const dotenv = require("dotenv");
 var bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-const URL =
-  "mongodb+srv://jmchiang:darklord5@mthree-mongo.ojzwn.mongodb.net/netflix?retryWrites=true&w=majority";
+const URL = "mongodb+srv://jmchiang:darklord5@mthree-mongo.ojzwn.mongodb.net/netflix?retryWrites=true&w=majority";
 
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
@@ -30,6 +27,7 @@ mongoose
   .then(() => console.log("MongoDB connected!"))
   .catch((err) => console.log({ message: err.message }));
 
+//  establish route path 
 app.use(express.json());
 app.use("/auth", authRoute);
 app.use("/users", userRoute);
